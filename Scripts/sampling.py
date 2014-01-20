@@ -11,7 +11,7 @@ class Horse:
 
 def main():
 	horses = {}
-	with open('Data/born98.csv', 'r') as f:
+	with open('../Data/born98.csv', 'r') as f:
 		attributes = f.readline().strip().split()
 
 		race_idx = attributes.index('race_name')
