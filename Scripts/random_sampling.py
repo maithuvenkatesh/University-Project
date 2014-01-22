@@ -20,9 +20,9 @@ def main():
 
 		for line in f:
 			data = line.strip().split('\t')		
-			horse_name = data[horse_idx]
-			race_name = data[race_idx]
-			horse_age = data[age_idx]
+			horse_name = data[horse_idx][1:-1].strip()
+			race_name = data[race_idx][1:-1].strip()
+			horse_age = data[age_idx][1:-1].strip()
 
 			try:
 				horses[horse_name].add_race(race_name, horse_age)
