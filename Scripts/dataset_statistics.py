@@ -24,11 +24,17 @@ def main():
 
 	winner_present = 0
 	for r in races98:
-		if races98[r].winner:
+		if races98[r].winner and horses98[races98[r].winner]:
 			winner_present += 1
 
 	print 'No. of races for which we have the winner: ' + str(winner_present)
 	print 'Fraction of races for which we have the winner: ' + str(float(winner_present)/len(races98))
+
+	average_race_per_horse = 0
+	for h in horses98:
+		average_race_per_horse += len(horses98[h].races)
+
+	print 'Average no. of races per horse: ' + str(float(average_race_per_horse)/len(horses98))
 
 	print '----------------------------------------------------------------------------------------------'
 
@@ -48,13 +54,18 @@ def main():
 
 	winner_present = 0
 	for r in races05:
-		if races05[r].winner:
+		if races05[r].winner and horses05[races05[r].winner]:
 			winner_present += 1
 
 	print 'No. of races for which we have the winner: ' + str(winner_present)
 	print 'Fraction of races for which we have the winner: ' + str(float(winner_present)/len(races05))
 
 
+	average_race_per_horse = 0
+	for h in horses05:
+		average_race_per_horse += len(horses05[h].races)
+
+	print 'Average no. of races per horse: ' + str(float(average_race_per_horse)/len(horses05))
 
 
 
