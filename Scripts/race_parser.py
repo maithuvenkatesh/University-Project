@@ -19,6 +19,13 @@ class Race:
     def add_horse(self, horse):
         self.horses.append(horse)
 
+    def calculate_average_speed(self):
+        total_speed = 0.0
+        for h in self.horses:
+            total_speed += h.speed
+
+        return total_speed/len(self.horses) 
+
 class Horse:
     def __init__(self, horse_name, horse_hash, horse_age, horse_place, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed):
         self.name = horse_name
@@ -164,14 +171,17 @@ class RaceParser:
                 # Converts comptime to seconds
                 comptime = data[comptime_idx][1:-1].strip()
                 comptime = comptime.split()
-                comptime = 60 * int(comptime[0]) + float(comptime[2][:-1])
+                comptime = 60 * float(comptime[0]) + float(comptime[2][:-1])
+
+                if comptime == 0.0:
+                    break
 				
                 trainer = data[trainer_idx][1:-1].strip()
                 jockey_name = data[jockey_name_idx][1:-1].strip()
                 jockeys_claim = data[jockeys_claim_idx][1:-1].strip()
                 rating = data[rating_idx][1:-1].strip()
 
-                horse_speed = float(race_distance)/comptime)
+                horse_speed = float(race_distance)/float(comptime)
 
                 race = Race(race_hash, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, winner)
                 horse = Horse(horse_name, horse_hash, horse_age, horse_place, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed) 
@@ -185,6 +195,8 @@ class RaceParser:
 
 def main():
     races = RaceParser('./../Data/born98.csv').races
+    for r in races:
+       print races[r].calculate_average_speed
     #print len(races)
 
 if __name__ == "__main__":
