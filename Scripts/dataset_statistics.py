@@ -36,7 +36,7 @@ def main():
 
 	print 'Average no. of races per horse: ' + str(float(average_race_per_horse)/len(horses98))
 
-	print '----------------------------------------------------------------------------------------------'
+	print ''
 
 	print 'born05.csv file statistics:'
 	print ''
