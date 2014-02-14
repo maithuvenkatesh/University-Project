@@ -20,7 +20,7 @@ class Race:
         self.horses.append(horse)
 
 class Horse:
-    def __init__(self, horse_name, horse_hash, horse_age, horse_place, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds):
+    def __init__(self, horse_name, horse_hash, horse_age, horse_place, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed):
         self.name = horse_name
         self.horse_hash = horse_hash
         self.age = horse_age
@@ -30,6 +30,7 @@ class Horse:
         self.jockeys_claim = jockeys_claim
         self.trainer = trainer
         self.odds = horse_odds
+        self.speed = horse_speed
 
 
 class RaceParser:
@@ -117,8 +118,6 @@ class RaceParser:
 
                     race_distance = miles_to_meters + furlongs_to_meters_1 + furlongs_to_meters_2
 
-                print race_distance
-
                 race_restrictions = data[restrictions_idx][1:-1].strip()
                 
                 race_class = data[race_class_idx][1:-1].strip().split()[-1]
@@ -172,9 +171,10 @@ class RaceParser:
                 jockeys_claim = data[jockeys_claim_idx][1:-1].strip()
                 rating = data[rating_idx][1:-1].strip()
 
+                horse_speed = float(race_distance)/comptime)
 
                 race = Race(race_hash, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, winner)
-                horse = Horse(horse_name, horse_hash, horse_age, horse_place, weight, jockey_name, jockeys_claim, trainer, odds) 
+                horse = Horse(horse_name, horse_hash, horse_age, horse_place, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed) 
                 	
                 try:                    
                     self.races[race_hash].add_horse(horse)
