@@ -1,0 +1,17 @@
+born98.csv file statistics:
+
+No. of horses: 3108
+No. of races: 14190
+No. of races for which we have all the horses: 1155
+Fraction of races for which we have all the horses: 0.0813953488372
+No. of races for which we have the winner: 1354
+Fraction of races for which we have the winner: 0.0954193093728
+----------------------------------------------------------------------------------------------
+born05.csv file statistics:
+
+No. of horses: 3993
+No. of races: 16110
+No. of races for which we have all the horses: 1297
+Fraction of races for which we have all the horses: 0.0805090006207
+No. of races for which we have the winner: 1667
+Fraction of races for which we have the winner: 0.1034761018

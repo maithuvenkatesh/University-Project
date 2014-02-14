@@ -1,0 +1,5 @@
+No. of different types of going in 98 dataset: 16
+set(['Firm', 'Heavy', 'Good To Soft', 'Good', 'Soft To Heavy', 'Standard To Fast', 'Hard', 'Yielding To Soft', 'Yielding', 'Fast', 'Standard', 'Good To Firm', 'Slow', 'Good To Yielding', 'Soft', 'Standard To Slow'])
+
+No. of different types of going in 05 dataset: 15
+set(['Heavy', 'Firm', 'Good To Soft', 'Good', 'Soft To Heavy', 'Standard To Fast', 'Yielding To Soft', 'Yielding', 'Fast', 'Standard', 'Good To Firm', 'Slow', 'Good To Yielding', 'Soft', 'Standard To Slow'])
