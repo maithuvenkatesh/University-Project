@@ -159,6 +159,9 @@ class HorseParser:
                 comptime = data[comptime_idx][1:-1].strip()
                 comptime = comptime.split()
                 comptime = 60 * int(comptime[0]) + float(comptime[2][:-1])
+
+                if comptime == 0.0:
+                    break
                 
                 trainer = data[trainer_idx][1:-1].strip()
                 jockey_name = data[jockey_name_idx][1:-1].strip()

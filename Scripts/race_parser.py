@@ -196,7 +196,8 @@ class RaceParser:
 def main():
     races = RaceParser('./../Data/born98.csv').races
     for r in races:
-       print races[r].calculate_average_speed
+       average_speed = races[r].calculate_average_speed()
+       print average_speed
     #print len(races)
 
 if __name__ == "__main__":
