@@ -76,7 +76,45 @@ class HorseParser:
                 
                 race_hash = race_name + race_date + race_time + race_track 
 
+                # Convert distance to meters per second
+                FURLONGS_TO_METERS = 201.1680
+                MILES_TO_METERS = 1609.344
+
                 race_distance = data[race_dist_idx][1:-1].strip()
+
+                if len(race_distance) == 2:
+                   
+                    if race_distance[1] is 'f':
+                        race_distance = float(race_distance[0]) * FURLONGS_TO_METERS
+                    elif race_distance[1] is 'm':
+                        race_distance = float(race_distance[0]) * MILES_TO_METERS
+               
+                elif len(race_distance) == 3:
+                    race_distance = (float(race_distance[0]) + 0.5) * FURLONGS_TO_METERS
+                
+                elif len(race_distance) == 4:
+                    miles_to_meters = float(race_distance[0]) * MILES_TO_METERS
+                    
+                    furlongs_to_meters = 0.0
+                    try:
+                        furlongs_to_meters = float(race_distance[2]) * FURLONGS_TO_METERS
+                    except ValueError:
+                        furlongs_to_meters = 0.5 * FURLONGS_TO_METERS
+                    
+                    race_distance = miles_to_meters + furlongs_to_meters
+                
+                elif len(race_distance) == 5:
+                    miles_to_meters = float(race_distance[0]) * MILES_TO_METERS
+                    furlongs_to_meters_1 = float(race_distance[2]) * FURLONGS_TO_METERS
+
+                    furlongs_to_meters_2 = 0.0
+                    try:
+                        furlongs_to_meters_2 = float(race_distance[3]) * FURLONGS_TO_METERS
+                    except ValueError:
+                        furlongs_to_meters_2 = 0.5 * FURLONGS_TO_METERS
+
+                    race_distance = miles_to_meters + furlongs_to_meters_1 + furlongs_to_meters_2
+
                 race_restrictions = data[restrictions_idx][1:-1].strip()
                 
                 race_class = data[race_class_idx][1:-1].strip().split()[-1]
