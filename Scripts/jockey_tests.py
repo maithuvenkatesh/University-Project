@@ -1,5 +1,16 @@
+from collections import Counter
 from horse_parser import HorseParser 
 from race_parser import RaceParser 
+
+def find_all_jockeys(races):
+    jockeys = set()
+    for r in races:
+        for h in races[r].horses:
+            jockeys.add(h.jockey)
+    return jockeys
+
+def find_no_of_sits(races):
+    jockeys = Counter()
 
 def main():
     horses98 = HorseParser('./../Data/born98.csv').horses
@@ -8,18 +19,13 @@ def main():
     races98 = RaceParser('./../Data/born98.csv').races
     races05 = RaceParser('./../Data/born05.csv').races
 
-    jockeys98 = set()
-    for r in races98:
-        for h in races98[r].horses:
-            jockeys98.add(h.jockey)
-
-    jockeys05 = set()
-    for r in races05:
-        for h in races05[r].horses:
-            jockeys05.add(h.jockey)
+    jockeys98 = find_all_jockeys(races98)
+    jockeys05 = find_all_jockeys(races05)
 
     print 'No. of jockeys in 98 dataset: ' + str(len(jockeys98))
     print 'No. of jockeys in 05 dataset: ' + str(len(jockeys05))
+
+
 
 
 if __name__ == "__main__":
