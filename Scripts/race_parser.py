@@ -43,7 +43,7 @@ class Horse:
 class RaceParser:
     def __init__(self, filepath):
         self.races = {}
-		
+
         with open(filepath) as f:
             attributes = f.readline().strip().split()
 
@@ -76,9 +76,7 @@ class RaceParser:
 
             for line in f:
                 data = line.strip().split('\t')
-                #print len(data)
 
-                #if len(data) == 25 or len(data) == 24:
                 race_date = data[race_date_idx][1:-1].strip()
                 race_time = data[race_time_idx][1:-1].strip()
                 race_track = data[race_track_idx][1:-1].strip()
@@ -149,7 +147,15 @@ class RaceParser:
 
                 horse_age = int(data[horse_age_idx][1:-1])
 
-                # TODO - should horses who were BD be the same as those for which we have no place?
+                # Converts comptime to seconds
+                comptime = data[comptime_idx][1:-1].strip()
+                comptime = comptime.split()
+                comptime = 60 * float(comptime[0]) + float(comptime[2][:-1])
+
+                if comptime == 0.0:
+                    continue
+
+                # TODO - check horse placing codes
                 horse_place = data[horse_place_idx][1:-1].strip()
                 match = re.search(re.compile('\d'), horse_place)
                 if match:
@@ -158,28 +164,22 @@ class RaceParser:
                         horse_place = 0
                     else:
                         horse_place = int(''.join(map(str, horse_place)))
-                else:	
-                    horse_place = 0
+                else:
+                    horse_place = no_of_runners
 
                 winner = ''
                 if horse_place == 1:
                 	winner = horse_hash
 
-                weight = data[weight_pounds_idx][1:-1].strip()
+                weight = float(data[weight_pounds_idx][1:-1].strip())
                 odds = float(data[odds_idx][1:-1].strip())
 
-                # Converts comptime to seconds
-                comptime = data[comptime_idx][1:-1].strip()
-                comptime = comptime.split()
-                comptime = 60 * float(comptime[0]) + float(comptime[2][:-1])
-
-                if comptime == 0.0:
-                    break
+                
 				
                 trainer = data[trainer_idx][1:-1].strip()
                 jockey_name = data[jockey_name_idx][1:-1].strip()
-                jockeys_claim = data[jockeys_claim_idx][1:-1].strip()
-                rating = data[rating_idx][1:-1].strip()
+                jockeys_claim = float(data[jockeys_claim_idx][1:-1].strip())
+                rating = float(data[rating_idx][1:-1].strip())
 
                 horse_speed = float(race_distance)/float(comptime)
 
@@ -192,13 +192,20 @@ class RaceParser:
                     self.races[race_hash] = race
                     self.races[race_hash].add_horse(horse)
 
-
+'''
 def main():
-    races = RaceParser('./../Data/born98.csv').races
-    for r in races:
-       average_speed = races[r].calculate_average_speed()
-       print average_speed
-    #print len(races)
+    races98 = RaceParser('./../Data/born98.csv').races
+    
+    races05 = RaceParser('./../Data/born05.csv').races
+
+    for r in races98:
+        if races98[r].no_of_runners != len(races98[r].horses):
+            print races98[r].name + ' ' + races98[r].date + ' ' + races98[r].track + ' ' + races98[r].time
+            for h in races98[r].horses:
+                print h.name
+            print ''
+'''
+
 
 if __name__ == "__main__":
 	main()
