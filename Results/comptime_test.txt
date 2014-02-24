@@ -1,0 +1,281 @@
+Race name: Kildare Maiden
+Race date: 2001-06-09
+No. of runners: 19
+Horse name: After Shock (IRE)
+Horse place: 4
+Horse odds: 10.0
+
+Race name: Kildare Maiden
+Race date: 2001-06-09
+No. of runners: 19
+Horse name: Amkel (IRE)
+Horse place: 14
+Horse odds: 20.0
+
+Race name: Kildare Maiden
+Race date: 2001-06-09
+No. of runners: 19
+Horse name: River Days (IRE)
+Horse place: 10
+Horse odds: 16.0
+
+Race name: Kildare Maiden
+Race date: 2001-06-09
+No. of runners: 19
+Horse name: Kennedys Music (IRE)
+Horse place: 17
+Horse odds: 16.0
+
+Race name: Kildare Maiden
+Race date: 2001-06-09
+No. of runners: 19
+Horse name: Marsh Harrier (USA)
+Horse place: 6
+Horse odds: 4.5
+
+Race name: Kildare Maiden
+Race date: 2001-06-09
+No. of runners: 19
+Horse name: Seychelles (IRE)
+Horse place: 2
+Horse odds: 5.0
+
+Race name: Kildare Maiden
+Race date: 2001-06-09
+No. of runners: 19
+Horse name: Sky View (USA)
+Horse place: 9
+Horse odds: 11.0
+
+Race name: D B Green Retails Engineering Services Claiming Stakes
+Race date: 2002-02-20
+No. of runners: 15
+Horse name: Petalite
+Horse place: 0
+Horse odds: 10.0
+
+Race name: D B Green Retails Engineering Services Claiming Stakes
+Race date: 2002-02-20
+No. of runners: 15
+Horse name: Stormy Voyage
+Horse place: 0
+Horse odds: 33.0
+
+Race name: Castlerea Maiden
+Race date: 2003-07-08
+No. of runners: 12
+Horse name: Irish Verse (IRE)
+Horse place: 2
+Horse odds: 10.0
+
+Race name: 20% Better Odds At betfair.com Handicap
+Race date: 2003-08-30
+No. of runners: 15
+Horse name: Banjo Bay (IRE)
+Horse place: 15
+Horse odds: 25.0
+
+Race name: 20% Better Odds At betfair.com Handicap
+Race date: 2003-08-30
+No. of runners: 15
+Horse name: Certain Justice (USA)
+Horse place: 9
+Horse odds: 4.0
+
+Race name: 20% Better Odds At betfair.com Handicap
+Race date: 2003-08-30
+No. of runners: 15
+Horse name: Diamond Max (IRE)
+Horse place: 8
+Horse odds: 33.0
+
+Race name: 20% Better Odds At betfair.com Handicap
+Race date: 2003-08-30
+No. of runners: 15
+Horse name: Santisima Trinidad (IRE)
+Horse place: 3
+Horse odds: 6.0
+
+Race name: 20% Better Odds At betfair.com Handicap
+Race date: 2003-08-30
+No. of runners: 15
+Horse name: Uhoomagoo
+Horse place: 12
+Horse odds: 9.0
+
+Race name: betdirect.co.uk Amateur Riders Handicap
+Race date: 2002-11-25
+No. of runners: 16
+Horse name: Beau Sauvage
+Horse place: 4
+Horse odds: 14.0
+
+Race name: M.D.OShea Handicap
+Race date: 2002-07-17
+No. of runners: 14
+Horse name: Pat The Builder (IRE)
+Horse place: 13
+Horse odds: 14.0
+
+Race name: M.D.OShea Handicap
+Race date: 2002-07-17
+No. of runners: 14
+Horse name: Catchabird (IRE)
+Horse place: 14
+Horse odds: 20.0
+
+Race name: M.D.OShea Handicap
+Race date: 2002-07-17
+No. of runners: 14
+Horse name: Lucky Three (IRE)
+Horse place: 8
+Horse odds: 10.0
+
+Race name: Sherston Maiden Fillies Stakes
+Race date: 2002-09-09
+No. of runners: 7
+Horse name: Land Girl
+Horse place: 6
+Horse odds: 100.0
+
+Race name: Marlborough Nine Regional Branches Handicap
+Race date: 2001-07-21
+No. of runners: 13
+Horse name: Last Theatre (IRE)
+Horse place: 1
+Horse odds: 3.0
+
+Race name: Bet Direct Tax Free Betting Handicap
+Race date: 2002-03-02
+No. of runners: 14
+Horse name: Flying Romance (IRE)
+Horse place: 11
+Horse odds: 8.0
+
+Race name: Bet Direct Tax Free Betting Handicap
+Race date: 2002-03-02
+No. of runners: 14
+Horse name: Handsome Badsha (IRE)
+Horse place: 14
+Horse odds: 33.0
+
+Race name: Oliver Cromwell Handicap
+Race date: 2001-11-06
+No. of runners: 10
+Horse name: Puzzle
+Horse place: 10
+Horse odds: 33.0
+
+Race name: John Lynch Handicap
+Race date: 2001-09-25
+No. of runners: 17
+Horse name: Netsuk (IRE)
+Horse place: 15
+Horse odds: 25.0
+
+Race name: John Lynch Handicap
+Race date: 2001-09-25
+No. of runners: 17
+Horse name: Czar Of Peace (IRE)
+Horse place: 2
+Horse odds: 10.0
+
+Race name: John Lynch Handicap
+Race date: 2001-09-25
+No. of runners: 17
+Horse name: Dualla Grounds (IRE)
+Horse place: 17
+Horse odds: 50.0
+
+Race name: John Lynch Handicap
+Race date: 2001-09-25
+No. of runners: 17
+Horse name: Its A Gimme (IRE) (OLD)
+Horse place: 7
+Horse odds: 10.0
+
+Race name: John Lynch Handicap
+Race date: 2001-09-25
+No. of runners: 17
+Horse name: Kono (IRE)
+Horse place: 13
+Horse odds: 7.0
+
+Race name: John Lynch Handicap
+Race date: 2001-09-25
+No. of runners: 17
+Horse name: Lady Killeen (IRE)
+Horse place: 10
+Horse odds: 12.0
+
+Race name: John Lynch Handicap
+Race date: 2001-09-25
+No. of runners: 17
+Horse name: Shalamina (IRE)
+Horse place: 12
+Horse odds: 16.0
+
+Race name: Tranent Maiden Handicap
+Race date: 2001-08-22
+No. of runners: 12
+Horse name: Royal Gent
+Horse place: 12
+Horse odds: 50.0
+
+Race name: Tranent Maiden Handicap
+Race date: 2001-08-22
+No. of runners: 12
+Horse name: Howards Dream (IRE)
+Horse place: 9
+Horse odds: 20.0
+
+Race name: Tranent Maiden Handicap
+Race date: 2001-08-22
+No. of runners: 12
+Horse name: Jahash
+Horse place: 2
+Horse odds: 10.0
+
+Race name: Tranent Maiden Handicap
+Race date: 2001-08-22
+No. of runners: 12
+Horse name: Lambadora
+Horse place: 7
+Horse odds: 8.0
+
+Race name: Tranent Maiden Handicap
+Race date: 2001-08-22
+No. of runners: 12
+Horse name: Sir Edward Burrow (IRE)
+Horse place: 6
+Horse odds: 8.0
+
+Race name: Champions Health Club Handicap
+Race date: 2004-08-07
+No. of runners: 11
+Horse name: Random Quest
+Horse place: 9
+Horse odds: 8.0
+
+Race name: Champions Health Club Handicap
+Race date: 2004-08-07
+No. of runners: 11
+Horse name: Mamcazma
+Horse place: 11
+Horse odds: 16.0
+
+Race name: Champions Health Club Handicap
+Race date: 2004-08-07
+No. of runners: 11
+Horse name: Thewhirlingdervish (IRE)
+Horse place: 6
+Horse odds: 9.0
+
+Race name: Kevin McManus Bookmakers European Breeders Fund Novice Chase
+Race date: 2005-12-18
+No. of runners: 5
+Horse name: Baron De Feypo (IRE)
+Horse place: 3
+Horse odds: 12.0
+
+40

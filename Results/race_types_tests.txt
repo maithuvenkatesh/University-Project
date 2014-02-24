@@ -1,0 +1,11 @@
+born98.csv file statistics:
+No. of full races of different types: 
+Counter({'maiden stakes': 512, 'stakes': 433, 'handicap': 171, 'nursery': 135, 'maiden': 92, 'other': 43, 'maiden handicap': 3})
+No. of races of different types:
+Counter({'handicap': 10758, 'stakes': 4816, 'other': 2171, 'maiden stakes': 1218, 'maiden': 663, 'nursery': 136, 'maiden handicap': 98})
+
+born05.csv file statistics:
+No. of full races of different types: 
+Counter({'maiden stakes': 696, 'stakes': 377, 'handicap': 329, 'nursery': 218, 'maiden': 137, 'other': 45, 'maiden handicap': 1})
+No. of races of different types:
+Counter({'handicap': 14264, 'stakes': 2959, 'other': 1661, 'maiden stakes': 1449, 'maiden': 901, 'nursery': 219, 'maiden handicap': 36})

@@ -1,0 +1,7 @@
+No. of Maiden races in born98 dataset: 607
+No. of races with all horse data: 1389
+
+No. of Maiden races in born05 dataset: 833
+No. of races with all horse data: 1802
+No. of races with details of only one horse in born98 dataset: 9554
+No. of races with details of only one horse in born98 dataset: 9683

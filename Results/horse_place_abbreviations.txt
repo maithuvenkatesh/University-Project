@@ -1,0 +1,375 @@
+born98 dataset
+Horse name: Orientor
+Race date: 2006-06-20
+Horse placing: BD
+
+Horse name: Ellendune Girl
+Race date: 2002-10-16
+Horse placing: UR
+
+Horse name: Fantasy Believer
+Race date: 2005-10-01
+Horse placing: UR
+
+Horse name: Neeruam Star
+Race date: 2000-07-14
+Horse placing: PU
+
+Horse name: Wilson Blyth
+Race date: 2001-07-03
+Horse placing: UR
+
+Horse name: Gibneys Flyer (IRE)
+Race date: 2000-09-03
+Horse placing: PU
+
+Horse name: Piccled
+Race date: 2004-08-07
+Horse placing: LFT
+
+Horse name: Princess Of Garda
+Race date: 2000-04-22
+Horse placing: UR
+
+Horse name: Piccled
+Race date: 2006-03-27
+Horse placing: RR
+
+Horse name: Uncle Folding (IRE)
+Race date: 2002-03-28
+Horse placing: LFT
+
+Horse name: Cyrazy
+Race date: 2001-04-24
+Horse placing: RR
+
+Horse name: Get It Sorted
+Race date: 2000-08-04
+Horse placing: UR
+
+Horse name: Tommy Smith
+Race date: 2002-07-19
+Horse placing: UR
+
+Horse name: Brainwave
+Race date: 2001-09-06
+Horse placing: F
+
+Horse name: Atemme
+Race date: 2002-09-15
+Horse placing: LFT
+
+Horse name: City Player
+Race date: 2002-06-19
+Horse placing: PU
+
+Horse name: Piccled
+Race date: 2005-12-06
+Horse placing: RR
+
+Horse name: Princess Penny
+Race date: 2000-05-01
+Horse placing: RR
+
+Horse name: Foley Millennium (IRE)
+Race date: 2003-02-17
+Horse placing: PU
+
+Horse name: Dusty Democrat
+Race date: 2000-03-25
+Horse placing: DSQ
+
+Horse name: Some Dust
+Race date: 2000-05-11
+Horse placing: UR
+
+Horse name: Piccled
+Race date: 2005-07-22
+Horse placing: RR
+
+Horse name: Misty Belle
+Race date: 2000-07-27
+Horse placing: DSQ
+
+Horse name: Millys Lass
+Race date: 2002-05-20
+Horse placing: PU
+
+Horse name: Dancing Milly
+Race date: 2000-07-10
+Horse placing: UR
+
+Horse name: Double Brew
+Race date: 2002-06-15
+Horse placing: DSQ
+
+Horse name: Cedar Jeneva
+Race date: 2000-05-04
+Horse placing: UR
+
+Horse name: Erracht
+Race date: 2004-08-16
+Horse placing: UR
+
+Horse name: Adweb
+Race date: 2003-09-19
+Horse placing: RR
+
+Horse name: Alburack
+Race date: 2002-08-28
+Horse placing: UR
+
+Horse name: Panchita (IRE)
+Race date: 2000-06-24
+Horse placing: PU
+
+Horse name: Inzacure (IRE)
+Race date: 2002-06-29
+Horse placing: PU
+
+Horse name: Tobiana (IRE)
+Race date: 2000-08-09
+Horse placing: UR
+
+Horse name: Frosty Wind (IRE)
+Race date: 2001-08-08
+Horse placing: PU
+
+Horse name: Alquid Novi (IRE)
+Race date: 2002-08-04
+Horse placing: BD
+
+Horse name: Trudie
+Race date: 2002-07-02
+Horse placing: F
+
+Horse name: Rainbow Princess (IRE)
+Race date: 2000-07-19
+Horse placing: PU
+
+Horse name: Atemme
+Race date: 2000-09-18
+Horse placing: RR
+
+Horse name: Quantum Lady
+Race date: 2000-09-18
+Horse placing: BD
+
+Horse name: Mountain Shadows (IRE)
+Race date: 2001-04-17
+Horse placing: RO
+
+Horse name: Faraway John (IRE)
+Race date: 2000-09-22
+Horse placing: PU
+
+Horse name: St Antim (IRE)
+Race date: 2000-10-04
+Horse placing: PU
+
+Horse name: Quatredil (IRE)
+Race date: 2000-11-22
+Horse placing: UR
+
+Horse name: May Princess
+Race date: 2001-12-19
+Horse placing: F
+
+Horse name: Bee One (IRE)
+Race date: 2002-11-14
+Horse placing: LFT
+
+Horse name: Orientor
+Race date: 2006-06-20
+Horse placing: BD
+
+Horse name: Ellendune Girl
+Race date: 2002-10-16
+Horse placing: UR
+
+Horse name: Fantasy Believer
+Race date: 2005-10-01
+Horse placing: UR
+
+Horse name: Neeruam Star
+Race date: 2000-07-14
+Horse placing: PU
+
+Horse name: Wilson Blyth
+Race date: 2001-07-03
+Horse placing: UR
+
+Horse name: Gibneys Flyer (IRE)
+Race date: 2000-09-03
+Horse placing: PU
+
+Horse name: Piccled
+Race date: 2004-08-07
+Horse placing: LFT
+
+Horse name: Princess Of Garda
+Race date: 2000-04-22
+Horse placing: UR
+
+Horse name: Piccled
+Race date: 2006-03-27
+Horse placing: RR
+
+Horse name: Uncle Folding (IRE)
+Race date: 2002-03-28
+Horse placing: LFT
+
+Horse name: Cyrazy
+Race date: 2001-04-24
+Horse placing: RR
+
+Horse name: Get It Sorted
+Race date: 2000-08-04
+Horse placing: UR
+
+Horse name: Tommy Smith
+Race date: 2002-07-19
+Horse placing: UR
+
+Horse name: Brainwave
+Race date: 2001-09-06
+Horse placing: F
+
+Horse name: Atemme
+Race date: 2002-09-15
+Horse placing: LFT
+
+Horse name: City Player
+Race date: 2002-06-19
+Horse placing: PU
+
+Horse name: Piccled
+Race date: 2005-12-06
+Horse placing: RR
+
+Horse name: Princess Penny
+Race date: 2000-05-01
+Horse placing: RR
+
+Horse name: Foley Millennium (IRE)
+Race date: 2003-02-17
+Horse placing: PU
+
+Horse name: Dusty Democrat
+Race date: 2000-03-25
+Horse placing: DSQ
+
+Horse name: Some Dust
+Race date: 2000-05-11
+Horse placing: UR
+
+Horse name: Piccled
+Race date: 2005-07-22
+Horse placing: RR
+
+Horse name: Misty Belle
+Race date: 2000-07-27
+Horse placing: DSQ
+
+Horse name: Millys Lass
+Race date: 2002-05-20
+Horse placing: PU
+
+Horse name: Dancing Milly
+Race date: 2000-07-10
+Horse placing: UR
+
+Horse name: Double Brew
+Race date: 2002-06-15
+Horse placing: DSQ
+
+Horse name: Cedar Jeneva
+Race date: 2000-05-04
+Horse placing: UR
+
+Horse name: Erracht
+Race date: 2004-08-16
+Horse placing: UR
+
+Horse name: Adweb
+Race date: 2003-09-19
+Horse placing: RR
+
+Horse name: Alburack
+Race date: 2002-08-28
+Horse placing: UR
+
+Horse name: Panchita (IRE)
+Race date: 2000-06-24
+Horse placing: PU
+
+Horse name: Inzacure (IRE)
+Race date: 2002-06-29
+Horse placing: PU
+
+Horse name: Tobiana (IRE)
+Race date: 2000-08-09
+Horse placing: UR
+
+Horse name: Frosty Wind (IRE)
+Race date: 2001-08-08
+Horse placing: PU
+
+Horse name: Alquid Novi (IRE)
+Race date: 2002-08-04
+Horse placing: BD
+
+Horse name: Trudie
+Race date: 2002-07-02
+Horse placing: F
+
+Horse name: Rainbow Princess (IRE)
+Race date: 2000-07-19
+Horse placing: PU
+
+Horse name: Atemme
+Race date: 2000-09-18
+Horse placing: RR
+
+Horse name: Quantum Lady
+Race date: 2000-09-18
+Horse placing: BD
+
+Horse name: Mountain Shadows (IRE)
+Race date: 2001-04-17
+Horse placing: RO
+
+Horse name: Faraway John (IRE)
+Race date: 2000-09-22
+Horse placing: PU
+
+Horse name: St Antim (IRE)
+Race date: 2000-10-04
+Horse placing: PU
+
+Horse name: Quatredil (IRE)
+Race date: 2000-11-22
+Horse placing: UR
+
+Horse name: May Princess
+Race date: 2001-12-19
+Horse placing: F
+
+Horse name: Bee One (IRE)
+Race date: 2002-11-14
+Horse placing: LFT
+
+Placing codes that exist in the born98 dataset: 
+set(['BD', 'RO', 'RR', 'F', 'PU', 'UR', 'LFT', 'DSQ'])
+
+born05 dataset
+Horse name: La Guancha
+Race date: 2008-08-09
+Horse placing: UR
+
+Horse name: La Guancha
+Race date: 2008-08-09
+Horse placing: UR
+
+Placing codes that exist in the born05 dataset: 
+set(['UR'])

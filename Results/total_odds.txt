@@ -1,0 +1,4 @@
+Maximum in born98 dataset: 7.69215367965
+Minimum in born98 dataset: 0.004
+Maximum in born05 dataset: 3.20656565657
+Minimum in born05 dataset: 0.0151515151515
