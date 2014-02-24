@@ -81,6 +81,21 @@ def get_all_horses_from_full_races(full_races):
 
     return horses
 
+
+def all_horses_with_k_races(races, horses):
+    horses_race_count = Counter()
+    seen_horses = set()
+
+    for r in races:
+        for h in races[r].horses:
+            if h.horse_hash not in seen_horses:
+                total_races = len(horses[h.horse_hash].races)
+                horses_race_count[total_races] += 1
+            else:
+                continue
+    return horses_race_count
+
+
 def horses_with_k_races(full_races, full_race_horses_data):
     horses_race_count = Counter()
     seen_horses = set()
@@ -90,10 +105,16 @@ def horses_with_k_races(full_races, full_race_horses_data):
             if h.horse_hash not in seen_horses:
                 total_races = len(full_race_horses_data[h.horse_hash].races)
                 horses_race_count[total_races] += 1
+                seen_horses.add(h.horse_hash)
+            else:
+                continue
 
     return horses_race_count
 
 def main():
+    horses98 = HorseParser('./../Data/born98.csv').horses
+    horses05 = HorseParser('./../Data/born05.csv').horses
+
     races98 = RaceParser('./../Data/born98.csv').races
     races05 = RaceParser('./../Data/born05.csv').races
 
@@ -103,10 +124,27 @@ def main():
     full_race_horse_data_98 = get_all_horses_from_full_races(full_races_98)
     full_race_horse_data_05 = get_all_horses_from_full_races(full_races_05)
 
-    horses_race_count_98 = horses_with_k_races(full_races_98, full_race_horse_data_98)
-    horses_race_count_98 = horses_with_k_races(full_races_98, full_race_horse_data_98)
+    full_horses_race_count_98 = horses_with_k_races(full_races_98, full_race_horse_data_98)
+    full_horses_race_count_05 = horses_with_k_races(full_races_98, full_race_horse_data_98)
 
-    print horses_race_count_98
+    all_horses_race_count_98 = all_horses_with_k_races(races98, horses98)
+    all_horses_race_count_05 = all_horses_with_k_races(races05, horses05)
+
+    print 'Born98 Dataset Statistics:'
+    print 'Race ouncts of horses for all data:'
+    print all_horses_race_count_98
+    print ''
+    print 'Race counts of horses for races with all runners: '
+    print full_horses_race_count_98
+
+    print ''
+
+    print 'Born05 Dataset Statistics:'
+    print 'Race counts of horses for all data:'
+    print all_horses_race_count_05
+    print ''
+    print 'Race counts of horses for races with all runners: '
+    print full_horses_race_count_05
 
 
 if __name__ == "__main__":
