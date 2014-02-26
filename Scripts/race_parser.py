@@ -173,8 +173,6 @@ class RaceParser:
 
                 weight = float(data[weight_pounds_idx][1:-1].strip())
                 odds = float(data[odds_idx][1:-1].strip())
-
-                
 				
                 trainer = data[trainer_idx][1:-1].strip()
                 jockey_name = data[jockey_name_idx][1:-1].strip()
@@ -197,13 +195,6 @@ def main():
     races98 = RaceParser('./../Data/born98.csv').races
     
     races05 = RaceParser('./../Data/born05.csv').races
-
-    for r in races98:
-        if races98[r].no_of_runners != len(races98[r].horses):
-            print races98[r].name + ' ' + races98[r].date + ' ' + races98[r].track + ' ' + races98[r].time
-            for h in races98[r].horses:
-                print h.name
-            print ''
 '''
 
 
