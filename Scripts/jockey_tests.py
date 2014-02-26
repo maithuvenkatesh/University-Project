@@ -9,8 +9,12 @@ def find_all_jockeys(races):
             jockeys.add(h.jockey)
     return jockeys
 
-def find_no_of_sits(races):
-    jockeys = Counter()
+def find_no_of_sits(races, jockey_set):
+    no_of_sits_by_jockeys = Counter()
+    
+    for r in races:
+        for h in races[r].horses:
+            no_of_sits_by_jockeys[h.jockey]
 
 def main():
     horses98 = HorseParser('./../Data/born98.csv').horses

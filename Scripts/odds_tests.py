@@ -2,39 +2,57 @@ import matplotlib.pyplot as plt
 from horse_parser import HorseParser 
 from race_parser import RaceParser 
 
+''' Returns the races which contain the records of all horses in the dataset '''
+def get_full_races(races):
+    full_races = {}
+    
+    for r in races:
+        if len(races[r].horses) == races[r].no_of_runners:
+            full_races[races[r].race_hash] = races[r]
+
+    return full_races
+
+
+''' Calculates the total odds for the races with all horses present '''
+def calculate_total_odds(full_races):
+    odds = []
+    for r in races:
+        total_odds = 0
+        for h in races[r].horses:
+            total_odds += 1/h.odds
+        odds.append(total_odds)
+
+    return odds
+
+
 def main():
-    horses98 = HorseParser('./../Data/born98.csv').horses
-    horses05 = HorseParser('./../Data/born05.csv').horses
+   # horses98 = HorseParser('./../Data/born98.csv').horses
+   # horses05 = HorseParser('./../Data/born05.csv').horses
 
     races98 = RaceParser('./../Data/born98.csv').races
     races05 = RaceParser('./../Data/born05.csv').races
 
-    odds = []
-    for r in races98:
-        total_odds = 0
-        
-        for h in races98[r].horses:
-            total_odds += 1/h.odds
-        
-        odds.append(total_odds)
+    full_races_98 = get_full_races(races98)
+    full_races_05 = get_full_races(races05)
 
-        if total_odds > 10:
-            print races98[r].name + ' ' + str(total_odds)
-            print races98[r].date
-            print races98[r].track
-            print races98[r].time
-            print races98[r].no_of_runners
-            for h in races98[r].horses:
-                print h.name + ' : ' + str(h.odds)
+    odds98 = calculate_total_odds(races98)
+    odds05 = calculate_total_odds(races05)
 
-            print ''
+    print 'Maximum in born98 dataset: ' + str(max(odds98))
+    print 'Minimum in born98 dataset: ' + str(min(odds98))
 
+    print 'Maximum in born05 dataset: ' + str(max(odds05))
+    print 'Minimum in born05 dataset: ' + str(min(odds05))
 
-    plt.plot(odds)
+    plt.plot(odds98)
     plt.xlabel('Race')
-    plt.ylabel('Total Odds for Each Race')
+    plt.ylabel('Total Odds for Race')
     plt.show()
     
+    plt.plot(odds05)
+    plt.xlabel('Race')
+    plt.ylabel('Total Odds for Race')
+    plt.show()
 
 if __name__ == "__main__":
     main()
