@@ -1,4 +1,4 @@
-import re, string
+import re, string, datetime
 
 class Race:
     def __init__(self, race_hash, race_track, race_date, race_time, race_name, race_prize, race_restrictions, no_of_runners, going, race_class, race_distance, winner):
@@ -83,6 +83,18 @@ class RaceParser:
                 race_name = data[race_name_idx][1:-1].strip()
 
                 race_hash = race_name + race_date + race_time + race_track
+
+                race_date = race_date.split('-')
+                year = int(race_date[0])
+                month = int(race_date[1])
+                day = int(race_date[2])
+                race_date = datetime.date(year, month, day)
+
+                race_time = race_time.split(':')
+                hour = int(race_time[0])
+                minutes = int(race_time[1])
+                seconds = int(race_time[2])
+                race_time = (hour, minutes, seconds)
 
                 # Convert distance to meters per second
                 FURLONGS_TO_METERS = 201.1680

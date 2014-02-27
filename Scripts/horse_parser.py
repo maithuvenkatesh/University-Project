@@ -1,4 +1,4 @@
-import re, string
+import re, string, datetime
 
 class Race:
     def __init__(self, race_hash, race_track, race_date, race_time, race_name, race_prize, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed):
@@ -26,11 +26,11 @@ class Horse:
     def __init__(self, horse_name, horse_hash):
         self.name = horse_name
         self.horse_hash = horse_hash
-        self.races = {}
+        self.races = []
 
     def add_race(self, race):
-        #self.races.append(race)
-        self.races[race.race_hash] = race
+        self.races.append(race)
+        #self.races[race.race_hash] = race
 
 class HorseParser:
     def __init__(self, filepath):
@@ -76,19 +76,23 @@ class HorseParser:
 
                 race_hash = race_name + race_date + race_time + race_track
 
+                race_date = race_date.split('-')
+                year = int(race_date[0])
+                month = int(race_date[1])
+                day = int(race_date[2])
+                race_date = datetime.date(year, month, day)
+
+                race_time = race_time.split(':')
+                hour = int(race_time[0])
+                minutes = int(race_time[1])
+                seconds = int(race_time[2])
+                race_time = (hour, minutes, seconds)
+
                 # Convert distance to meters per second
                 FURLONGS_TO_METERS = 201.1680
                 MILES_TO_METERS = 1609.344
 
-                try:
-                    race_distance = data[race_dist_idx][1:-1].strip()
-                except IndexError:
-                    print len(data)
-                    print data
-                    print race_dist_idx
-                    print race_date
-                    print race_time
-                    print race_track
+                race_distance = data[race_dist_idx][1:-1].strip()
 
                 if len(race_distance) == 2:
                    
