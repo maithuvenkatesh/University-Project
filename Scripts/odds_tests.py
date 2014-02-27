@@ -1,17 +1,7 @@
 import matplotlib.pyplot as plt
 from horse_parser import HorseParser 
 from race_parser import RaceParser 
-
-''' Returns the races which contain the records of all horses in the dataset '''
-def get_full_races(races):
-    full_races = {}
-    
-    for r in races:
-        if len(races[r].horses) == races[r].no_of_runners:
-            full_races[races[r].race_key] = races[r]
-
-    return full_races
-
+from utility_functions import get_full_races
 
 ''' Calculates the total odds for the races with all horses present '''
 def calculate_total_odds(full_races):
@@ -24,10 +14,13 @@ def calculate_total_odds(full_races):
 
     return odds
 
+def all_horses_have_odds(races):
+    
+
 
 def main():
-   # horses98 = HorseParser('./../Data/born98.csv').horses
-   # horses05 = HorseParser('./../Data/born05.csv').horses
+    horses98 = HorseParser('./../Data/born98.csv').horses
+    horses05 = HorseParser('./../Data/born05.csv').horses
 
     races98 = RaceParser('./../Data/born98.csv').races
     races05 = RaceParser('./../Data/born05.csv').races
