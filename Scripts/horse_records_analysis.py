@@ -11,7 +11,7 @@ def get_full_races(races):
     
     for r in races:
         if len(races[r].horses) == races[r].no_of_runners:
-            full_races[races[r].race_hash] = races[r]
+            full_races[races[r].race_key] = races[r]
 
     return full_races
 
@@ -22,10 +22,10 @@ def horses_with_k_races(races, horse_records):
 
     for r in races:
         for h in races[r].horses:
-            if h.horse_hash not in seen_horses:
-                total_races = len(horse_records[h.horse_hash].races)
+            if h.horse_key not in seen_horses:
+                total_races = len(horse_records[h.horse_key].races)
                 horses_race_count[total_races] += 1
-                seen_horses.add(h.horse_hash)
+                seen_horses.add(h.horse_key)
             else:
                 continue
 

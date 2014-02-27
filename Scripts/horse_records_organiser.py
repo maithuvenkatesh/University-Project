@@ -1,6 +1,6 @@
 class Race:
-    def __init__(self, race_hash, race_track, race_date, race_time, race_name, race_prize, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed, winning_horse):
-        self.race_hash = race_hash
+    def __init__(self, race_key, race_track, race_date, race_time, race_name, race_prize, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed, winning_horse):
+        self.race_key = race_key
         self.track = race_track
         self.date = race_date
         self.time = race_time
@@ -22,9 +22,9 @@ class Race:
         self.race_winner = winning_horse
 
 class Horse:
-    def __init__(self, horse_name, horse_hash):
+    def __init__(self, horse_name, horse_key):
         self.name = horse_name
-        self.horse_hash = horse_hash
+        self.horse_key = horse_key
         self.races = {}
 
 class HorseRecords:
@@ -33,7 +33,7 @@ class HorseRecords:
 
         for r in full_races:
             for h in full_races[r].horses:
-                race_hash = full_races[r].race_hash
+                race_key = full_races[r].race_key
                 race_track = full_races[r].track
                 race_date = full_races[r].date
                 race_time = full_races[r].time
@@ -47,7 +47,7 @@ class HorseRecords:
                 winning_horse = full_races[r].winner
 
                 horse_name = h.name
-                horse_hash = h.horse_hash
+                horse_key = h.horse_key
                 horse_place = h.place
                 horse_age = h.age
                 weight_carried = h.weight_carried
@@ -57,11 +57,11 @@ class HorseRecords:
                 odds = h.odds
                 horse_speed = h.speed
 
-                race = Race(race_hash, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight_carried, jockey_name, jockeys_claim, trainer, odds, horse_speed, winning_horse)
-                horse = Horse(horse_name, horse_hash)
+                race = Race(race_key, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight_carried, jockey_name, jockeys_claim, trainer, odds, horse_speed, winning_horse)
+                horse = Horse(horse_name, horse_key)
 
                 try:       
-                    self.horses[horse_hash].races[race_hash] = race
+                    self.horses[horse_key].races[race_key] = race
                 except KeyError:
-                    self.horses[horse_hash] = horse
-                    self.horses[horse_hash].races[race_hash] = race
+                    self.horses[horse_key] = horse
+                    self.horses[horse_key].races[race_key] = race
