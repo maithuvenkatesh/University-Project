@@ -1,8 +1,8 @@
 import re, string, datetime
 
 class Race:
-    def __init__(self, race_hash, race_track, race_date, race_time, race_name, race_prize, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed):
-        self.race_hash = race_hash
+    def __init__(self, race_key, race_track, race_date, race_time, race_name, race_prize, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed):
+        self.race_key = race_key
         self.track = race_track
         self.date = race_date
         self.time = race_time
@@ -23,14 +23,14 @@ class Race:
         self.horse_speed = horse_speed
 
 class Horse:
-    def __init__(self, horse_name, horse_hash):
+    def __init__(self, horse_name, horse_key):
         self.name = horse_name
-        self.horse_hash = horse_hash
+        self.horse_key = horse_key
         self.races = []
 
     def add_race(self, race):
         self.races.append(race)
-        #self.races[race.race_hash] = race
+        #self.races[race.race_key] = race
 
 class HorseParser:
     def __init__(self, filepath):
@@ -77,7 +77,7 @@ class HorseParser:
                 if re.search('handicap', race_name) or re.search('nursery', race_name):
                     continue
 
-                race_hash = race_name + race_date + race_time + race_track
+                race_key = race_name + race_date + race_time + race_track
 
                 race_date = race_date.split('-')
                 year = int(race_date[0])
@@ -148,9 +148,9 @@ class HorseParser:
 
                 horse_name = data[horse_name_idx][1:-1].strip()
                 exclude = set(string.punctuation)
-                horse_hash = horse_name.lower() # Used for the key of the hashtable
-                horse_hash = ''.join(c for c in horse_hash if c not in exclude)
-                horse_hash = horse_hash.replace(' ', '')
+                horse_key = horse_name.lower() # Used for the key of the hashtable
+                horse_key = ''.join(c for c in horse_key if c not in exclude)
+                horse_key = horse_key.replace(' ', '')
 
                 horse_age = int(data[horse_age_idx][1:-1])
 
@@ -168,7 +168,7 @@ class HorseParser:
 
                 winner = ''
                 if horse_place == 1:
-                    winner = horse_hash
+                    winner = horse_key
 
                 weight = float(data[weight_pounds_idx][1:-1].strip())
                 odds = float(data[odds_idx][1:-1].strip())
@@ -188,14 +188,14 @@ class HorseParser:
 
                 horse_speed = float(race_distance)/float(comptime)
 
-                race = Race(race_hash, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed)
-                horse = Horse(horse_name, horse_hash) 
+                race = Race(race_key, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed)
+                horse = Horse(horse_name, horse_key) 
 
                 try:       
-                    self.horses[horse_hash].add_race(race)
+                    self.horses[horse_key].add_race(race)
                 except KeyError:
-                    self.horses[horse_hash] = horse
-                    self.horses[horse_hash].add_race(race)
+                    self.horses[horse_key] = horse
+                    self.horses[horse_key].add_race(race)
 
 '''
 def main():

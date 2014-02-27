@@ -39,7 +39,7 @@ def get_full_races(races):
     
     for r in races:
         if len(races[r].horses) == races[r].no_of_runners:
-            full_races[races[r].race_hash] = races[r]
+            full_races[races[r].race_key] = races[r]
 
     return full_races
 
@@ -94,7 +94,7 @@ def races_with_winning_horse(races):
 
     for r in races:
         for h in races[r].horses:
-            if races[r].winner == h.horse_hash:
+            if races[r].winner == h.horse_key:
                 races_with_winner += 1
 
     return races_with_winner

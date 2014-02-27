@@ -22,7 +22,7 @@ def get_full_races(races):
     
     for r in races:
         if len(races[r].horses) == races[r].no_of_runners:
-            full_races[races[r].race_hash] = races[r]
+            full_races[races[r].race_key] = races[r]
 
     return full_races
 
