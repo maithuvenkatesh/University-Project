@@ -13,6 +13,10 @@ def split_dataset(horses):
 
     return horses_train, horses_test
 
+def compute_vector(horse):
+    features = []
+
+
 def main():
     horses98 = HorseParser('./../Data/born98.csv').horses
     horses05 = HorseParser('./../Data/born05.csv').horses
@@ -24,7 +28,13 @@ def main():
 
     horses_train_98 = [h for h in horses_train_98 if len(h.races) > 4]
 
-    
+    feature_vectors = []
+    for h in horses_train_98:
+       vector = compute_vector(h)
+       feature_vectors.append(vector)
+       
+
+
 
 
 

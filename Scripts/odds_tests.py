@@ -15,7 +15,7 @@ def calculate_total_odds(full_races):
     return odds
 
 def all_horses_have_odds(races):
-    
+        
 
 
 def main():
