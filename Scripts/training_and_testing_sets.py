@@ -1,6 +1,7 @@
 import random, datetime, operator, re
 from race_parser import RaceParser
 from horse_parser_no_handicaps import HorseParser
+from sklearn import linear_model
 
 def split_dataset(horses):
     keys = sorted(horses.keys())
@@ -14,7 +15,27 @@ def split_dataset(horses):
     return horses_train, horses_test
 
 def compute_vector(horse):
-    features = []
+    vector = []
+    sorted_races = sorted(horse.races, key=lambda x:x.date, reverse=True)
+    speed_in_next_race = sorted_races[0].horse_speed
+
+    # Only compute previous featuer using all the races except last race
+    average_speed = 0.0
+    average_rating = 0.0
+    average_odds = 0.0
+    
+    for r in sorted_races[1:]:
+        average_speed += r.horse_speed
+        average_rating += r.horse_rating
+        average_odds += r.horse_odds
+
+    no_of_races = len(sorted_races[1:])
+    vector.append(average_speed)
+    vector.append(average_rating)
+    vector.append(average_odds)
+
+    vector = [a/no_of_races for a in vector]
+    return vector, sorted_races[0].horse_speed
 
 
 def main():
@@ -28,18 +49,18 @@ def main():
 
     horses_train_98 = [h for h in horses_train_98 if len(h.races) > 4]
 
-    feature_vectors = []
+    X_train = []
+    y_train = []
+
     for h in horses_train_98:
-       vector = compute_vector(h)
-       feature_vectors.append(vector)
-       
+        v,s = compute_vector(h)
+        X_train.append(v)
+        y_train.append(s)
+    
+    clf = linear_model.LinearRegression()
+    clf.fit(X_train, y_train)
+    print clf.coef_
 
-
-
-
-
-        
-        
                 
         
 

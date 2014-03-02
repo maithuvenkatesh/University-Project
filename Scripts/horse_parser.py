@@ -1,7 +1,7 @@
 import re, string, datetime
 
 class Race:
-    def __init__(self, race_key, race_track, race_date, race_time, race_name, race_prize, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed):
+    def __init__(self, race_key, race_track, race_date, race_time, race_name, race_prize, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed, horse_rating):
         self.race_key = race_key
         self.track = race_track
         self.date = race_date
@@ -21,6 +21,7 @@ class Race:
         self.horse_trainer = trainer
         self.horse_odds = horse_odds
         self.horse_speed = horse_speed
+        self.horse_rating = horse_rating
 
 class Horse:
     def __init__(self, horse_name, horse_key):
@@ -185,7 +186,7 @@ class HorseParser:
 
                 horse_speed = float(race_distance)/float(comptime)
 
-                race = Race(race_key, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed)
+                race = Race(race_key, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed, rating)
                 horse = Horse(horse_name, horse_key) 
 
                 try:       
@@ -194,11 +195,14 @@ class HorseParser:
                     self.horses[horse_key] = horse
                     self.horses[horse_key].add_race(race)
 
-'''
+
 def main():
     horses = HorseParser('./../Data/born98.csv').horses
-
-
+    '''
+    for h in horses:
+        for r in horses[h].races:
+            values = [r.track, r.date, r.time, r.name, r.prize_money, r.race_restrictions, r.no_of_runners, r.going, r.race_class, r.race_distance, r.horse_place, r.horse_age, r.weight, r.jockey_name, r.jockeys_claim, r.trainer, r.odds, r.horse_speed, r.rating]
+            print values
+    '''
 if __name__ == "__main__":
     main()
-'''
