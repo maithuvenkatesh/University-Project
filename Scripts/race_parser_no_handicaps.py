@@ -1,7 +1,7 @@
 import re, string, datetime
 
 class Race:
-    def __init__(self, race_key, race_track, race_date, race_time, race_name, race_prize, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed, horse_rating):
+    def __init__(self, race_key, race_track, race_date, race_time, race_name, race_prize, race_restrictions, no_of_runners, going, race_class, race_distance, winner):
         self.race_key = race_key
         self.track = race_track
         self.date = race_date
@@ -13,29 +13,36 @@ class Race:
         self.going = going
         self.race_class = race_class
         self.distance = race_distance
-        self.horse_place = horse_place
-        self.horse_age = horse_age
-        self.weight_carried = weight_carried
-        self.horse_jockey = jockey_name
-        self.jockeys_claim = jockeys_claim
-        self.horse_trainer = trainer
-        self.horse_odds = horse_odds
-        self.horse_speed = horse_speed
-        self.horse_rating = horse_rating
+        self.winner = winner
+        self.horses = []
+
+    def add_horse(self, horse):
+        self.horses.append(horse)
+
+    def calculate_average_speed(self):
+        total_speed = 0.0
+        for h in self.horses:
+            total_speed += h.speed
+
+        return total_speed/len(self.horses) 
 
 class Horse:
-    def __init__(self, horse_name, horse_key):
+    def __init__(self, horse_name, horse_key, horse_age, horse_place, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed):
         self.name = horse_name
         self.horse_key = horse_key
-        self.races = []
+        self.age = horse_age
+        self.place = horse_place
+        self.weight_carried = weight_carried
+        self.jockey = jockey_name
+        self.jockeys_claim = jockeys_claim
+        self.trainer = trainer
+        self.odds = horse_odds
+        self.speed = horse_speed
 
-    def add_race(self, race):
-        self.races.append(race)
-        #self.races[race.race_key] = race
 
-class HorseParserNoHandicapss:
+class RaceParserNoHandicaps:
     def __init__(self, filepath):
-        self.horses = {}
+        self.races = {}
 
         with open(filepath) as f:
             attributes = f.readline().strip().split()
@@ -46,7 +53,7 @@ class HorseParserNoHandicapss:
             race_name_idx = attributes.index('race_name')
             restrictions_idx = attributes.index('race_restrictions_age')
             race_class_idx = attributes.index('race_class')
-            major_idx = attributes.index('major')
+            major_idx = attributes.index('major')   
             race_dist_idx = attributes.index('race_distance')
             prize_idx = attributes.index('prize_money')
             going_idx = attributes.index('going_description')
@@ -66,7 +73,7 @@ class HorseParserNoHandicapss:
             rating_idx = attributes.index('official_rating')
             comptime_idx = attributes.index('comptime')
             total_dstbt_idx = attributes.index('TotalDstBt')
-            
+
             for line in f:
                 data = line.strip().split('\t')
 
@@ -155,6 +162,14 @@ class HorseParserNoHandicapss:
 
                 horse_age = int(data[horse_age_idx][1:-1])
 
+                # Converts comptime to seconds
+                comptime = data[comptime_idx][1:-1].strip()
+                comptime = comptime.split()
+                comptime = 60 * float(comptime[0]) + float(comptime[2][:-1])
+
+                if comptime == 0.0:
+                    continue
+
                 # TODO - check horse placing codes
                 horse_place = data[horse_place_idx][1:-1].strip()
                 match = re.search(re.compile('\d'), horse_place)
@@ -165,7 +180,7 @@ class HorseParserNoHandicapss:
                     else:
                         horse_place = int(''.join(map(str, horse_place)))
                 else:
-                    horse_place = 0
+                    horse_place = no_of_runners
 
                 winner = ''
                 if horse_place == 1:
@@ -173,14 +188,6 @@ class HorseParserNoHandicapss:
 
                 weight = float(data[weight_pounds_idx][1:-1].strip())
                 odds = float(data[odds_idx][1:-1].strip())
-
-                # Converts comptime to seconds
-                comptime = data[comptime_idx][1:-1].strip()
-                comptime = comptime.split()
-                comptime = 60 * float(comptime[0]) + float(comptime[2][:-1])
-
-                if comptime == 0.0:
-                    continue
                 
                 trainer = data[trainer_idx][1:-1].strip()
                 jockey_name = data[jockey_name_idx][1:-1].strip()
@@ -189,20 +196,22 @@ class HorseParserNoHandicapss:
 
                 horse_speed = float(race_distance)/float(comptime)
 
-                race = Race(race_key, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed, rating)
-                horse = Horse(horse_name, horse_key) 
-
-                try:       
-                    self.horses[horse_key].add_race(race)
+                race = Race(race_key, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, winner)
+                horse = Horse(horse_name, horse_key, horse_age, horse_place, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed) 
+                    
+                try:                    
+                    self.races[race_key].add_horse(horse)
                 except KeyError:
-                    self.horses[horse_key] = horse
-                    self.horses[horse_key].add_race(race)
+                    self.races[race_key] = race
+                    self.races[race_key].add_horse(horse)
 
 '''
 def main():
-    horses = HorseParser('./../Data/born98.csv').horses
+    races98 = RaceParser('./../Data/born98.csv').races
+    
+    races05 = RaceParser('./../Data/born05.csv').races
+'''
 
 
 if __name__ == "__main__":
     main()
-'''
