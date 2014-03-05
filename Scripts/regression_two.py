@@ -1,41 +1,44 @@
 import numpy as np
 import pylab as pl
+import random
 from race_parser_no_handicaps import RaceParserNoHandicaps
 from horse_parser_no_handicaps import HorseParserNoHandicaps
 from utilities import split_dataset
 from sklearn import linear_model
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score, explained_variance_score
 
-''' Regression Experiment 1: Basic prediction with lifetime features using the last race information as next race '''
+''' Regression Experiment 2: Basic prediction with lifetime features using the random race (between race 4 and second-last race) as next race '''
 
 def compute_vector(horse):
     vector = []
-    sorted_races = sorted(horse.races, key=lambda x:x.date, reverse=True)
-    speed_in_next_race = sorted_races[0].horse_speed
+    sorted_races = sorted(horse.races, key=lambda x:x.date, reverse=False)
 
-    # Only compute previous feature using all the races except last race
+    # Determine the next race of the horse between 4 and the second last race
+    next_race_number = random.randint(3, len(sorted_races)-2)
+    speed_in_next_race = sorted_races[next_race_number].horse_speed
+
+    # Compute and append lifetime features
     average_speed = 0.0
     average_rating = 0.0
     average_odds = 0.0
     average_prize_money = 0.0
-    average_race_distance = 0.0
+    average_distance = 0.0
     
-    for r in sorted_races[1:]:
+    for r in sorted_races[:next_race_number]:
         average_speed += r.horse_speed
         average_rating += r.horse_rating
         average_odds += r.horse_odds
+        average_distance += r.distance
         average_prize_money += r.prize
-        average_race_distance += r.distance
 
     vector.append(average_speed)
     vector.append(average_rating)
     vector.append(average_odds)
     vector.append(average_prize_money)
-    vector.append(average_race_distance)
-
-    no_of_races = len(sorted_races[1:])
+    vector.append(average_distance)
+    
+    no_of_races = len(sorted_races[:next_race_number])
     vector = [a/no_of_races for a in vector]
-    return vector, sorted_races[0].horse_speed
+    return vector, speed_in_next_race
 
 def main():
     horses98 = HorseParserNoHandicaps('./../Data/born98.csv').horses
@@ -94,11 +97,7 @@ def main():
 
     print 'Mean absolute error:'
     print mean_absolute_error((regr98.predict(horses_98_X_test)), horses_98_y_test)
-    print ''
-
-    print 'Explained variance:'
-    print explained_variance_score((regr98.predict(horses_98_X_test)), horses_98_y_test)
-    print ''
+    print ''   
 
 
     ''' HorsesBorn05 Dataset '''
@@ -139,7 +138,7 @@ def main():
     print regr05.coef_
     print ''
 
-    # Residual sum of squares
+    # Mean square error
     print 'Residual sum of squares:' 
     print np.mean((regr05.predict(horses_05_X_test) - horses_05_y_test) ** 2)
     print ''
@@ -151,7 +150,10 @@ def main():
 
     print 'Mean absolute error:'
     print mean_absolute_error((regr05.predict(horses_05_X_test)), horses_05_y_test)
-    print ''
+    print ''    
+        
+
+
 
 
 if __name__ == "__main__":
