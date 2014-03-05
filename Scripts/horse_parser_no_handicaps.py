@@ -33,7 +33,7 @@ class Horse:
         self.races.append(race)
         #self.races[race.race_key] = race
 
-class HorseParserNoHandicapss:
+class HorseParserNoHandicaps:
     def __init__(self, filepath):
         self.horses = {}
 
