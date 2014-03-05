@@ -1,0 +1,44 @@
+No. of instances in training set:
+1282
+1282
+
+No. of instances in testing set:
+1261
+1261
+
+Coefficients:
+[  3.53113026e-01  -2.12011566e-03  -2.72961375e-03  -4.28461403e-06
+  -1.34697753e-04   5.73062391e-02  -1.63407217e-02  -5.46498678e-04
+   3.72530866e-06   1.14507617e-03   3.09866742e-03   1.28033388e-01]
+
+Residual sum of squares:
+0.639215742315
+
+Variance score:
+0.420412618608
+
+Mean absolute error:
+0.615204648774
+
+No. of instances in training set:
+1621
+1621
+
+No. of instances in testing set:
+1625
+1625
+
+Coefficients:
+[  3.04357979e-01  -1.03066971e-03  -3.80881898e-03  -1.80072538e-06
+  -3.32827097e-04   6.35097818e-02  -9.07529800e-03  -4.57116700e-04
+   1.39349445e-06   7.16714496e-04   2.97786737e-03   1.58575582e-01]
+
+Residual sum of squares:
+0.498528440845
+
+Variance score:
+0.445592479535
+
+Mean absolute error:
+0.536181293814
+
