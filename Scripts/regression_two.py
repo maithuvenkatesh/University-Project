@@ -5,6 +5,7 @@ from race_parser_no_handicaps import RaceParserNoHandicaps
 from horse_parser_no_handicaps import HorseParserNoHandicaps
 from utilities import split_dataset
 from sklearn import linear_model
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score, explained_variance_score
 
 ''' Regression Experiment 2: Basic prediction with lifetime features using the random race (between race 4 and second-last race) as next race '''
 
