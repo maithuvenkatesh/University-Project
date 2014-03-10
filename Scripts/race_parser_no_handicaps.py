@@ -27,7 +27,7 @@ class Race:
         return total_speed/len(self.horses) 
 
 class Horse:
-    def __init__(self, horse_name, horse_key, horse_age, horse_place, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed):
+    def __init__(self, horse_name, horse_key, horse_age, horse_place, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed, horse_comptime):
         self.name = horse_name
         self.horse_key = horse_key
         self.age = horse_age
@@ -38,6 +38,7 @@ class Horse:
         self.trainer = trainer
         self.odds = horse_odds
         self.speed = horse_speed
+        self.comptime = horse_comptime
 
 
 class RaceParserNoHandicaps:
@@ -197,7 +198,7 @@ class RaceParserNoHandicaps:
                 horse_speed = float(race_distance)/float(comptime)
 
                 race = Race(race_key, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, winner)
-                horse = Horse(horse_name, horse_key, horse_age, horse_place, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed) 
+                horse = Horse(horse_name, horse_key, horse_age, horse_place, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed, comptime) 
                     
                 try:                    
                     self.races[race_key].add_horse(horse)

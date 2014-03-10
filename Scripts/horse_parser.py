@@ -1,7 +1,7 @@
 import re, string, datetime
 
 class Race:
-    def __init__(self, race_key, race_track, race_date, race_time, race_name, race_prize, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed, horse_rating):
+    def __init__(self, race_key, race_track, race_date, race_time, race_name, race_prize, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed, horse_rating, comptime):
         self.race_key = race_key
         self.track = race_track
         self.date = race_date
@@ -22,6 +22,7 @@ class Race:
         self.horse_odds = horse_odds
         self.horse_speed = horse_speed
         self.horse_rating = horse_rating
+        self.horse_comptime = comptime
 
 class Horse:
     def __init__(self, horse_name, horse_key):
@@ -186,7 +187,7 @@ class HorseParser:
 
                 horse_speed = float(race_distance)/float(comptime)
 
-                race = Race(race_key, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed, rating)
+                race = Race(race_key, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed, rating, comptime)
                 horse = Horse(horse_name, horse_key) 
 
                 try:       
