@@ -21,8 +21,11 @@ class Race:
 
     def calculate_average_speed(self):
         total_speed = 0.0
+        average_speed = sum([h.speed for h in self.horses])/float(len(self.horses))
         for h in self.horses:
             total_speed += h.speed
+
+        assert average_speed == total_speed/len(self.horses)
 
         return total_speed/len(self.horses) 
 

@@ -37,6 +37,7 @@ class Horse:
 class HorseParser:
     def __init__(self, filepath):
         self.horses = {}
+        self.discarded_records = 0
 
         with open(filepath) as f:
             attributes = f.readline().strip().split()
@@ -178,6 +179,7 @@ class HorseParser:
                 comptime = 60 * float(comptime[0]) + float(comptime[2][:-1])
 
                 if comptime == 0.0:
+                    self.discarded_records += 1
                     continue
                 
                 trainer = data[trainer_idx][1:-1].strip()

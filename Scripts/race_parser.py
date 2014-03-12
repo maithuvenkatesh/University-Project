@@ -44,6 +44,7 @@ class Horse:
 class RaceParser:
     def __init__(self, filepath):
         self.races = {}
+        self.discarded_records = 0
 
         with open(filepath) as f:
             attributes = f.readline().strip().split()
@@ -166,6 +167,7 @@ class RaceParser:
                 comptime = 60 * float(comptime[0]) + float(comptime[2][:-1])
 
                 if comptime == 0.0:
+                    self.discarded_records += 1
                     continue
 
                 # TODO - check horse placing codes
