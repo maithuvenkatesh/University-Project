@@ -97,9 +97,20 @@ def main():
     print ''
 
     print 'Mean absolute error:'
-    print mean_absolute_error((regr98.predict(horses_98_X_test)), horses_98_y_test)
-    print ''   
+    print mean_absolute_error(horses_98_y_test, (regr98.predict(horses_98_X_test)))
+    print ''
 
+    print 'Explained variance:'
+    print explained_variance_score(horses_98_y_test, (regr98.predict(horses_98_X_test)))
+    print ''
+
+    print 'Mean squared error:'
+    print mean_squared_error(horses_98_y_test, (regr98.predict(horses_98_X_test)))
+    print ''
+
+    print 'R2 score:'
+    print r2_score(horses_98_y_test, (regr98.predict(horses_98_X_test)))
+    print ''
 
     ''' HorsesBorn05 Dataset '''
     horses_train_05, horses_test_05 = split_dataset(horses05)
@@ -139,7 +150,7 @@ def main():
     print regr05.coef_
     print ''
 
-    # Mean square error
+   # Mean square error
     print 'Residual sum of squares:' 
     print np.mean((regr05.predict(horses_05_X_test) - horses_05_y_test) ** 2)
     print ''
@@ -150,9 +161,21 @@ def main():
     print ''
 
     print 'Mean absolute error:'
-    print mean_absolute_error((regr05.predict(horses_05_X_test)), horses_05_y_test)
-    print ''    
-        
+    print mean_absolute_error(horses_05_y_test, (regr05.predict(horses_05_X_test)))
+    print ''
+
+    print 'Explained variance:'
+    print explained_variance_score(horses_05_y_test, (regr05.predict(horses_05_X_test)))
+    print ''
+
+    print 'Mean squared error:'
+    print mean_squared_error(horses_05_y_test, (regr05.predict(horses_05_X_test)))
+    print ''
+
+    print 'R2 score:'
+    print r2_score(horses_05_y_test, (regr05.predict(horses_05_X_test)))
+    print ''
+
 
 
 

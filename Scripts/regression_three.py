@@ -1,6 +1,7 @@
 import numpy as np
 import pylab as pl
 import random
+import matplotlib.pyplot as plt
 from race_parser_no_handicaps import RaceParserNoHandicaps
 from horse_parser_no_handicaps import HorseParserNoHandicaps
 from utilities import split_dataset
@@ -52,6 +53,19 @@ def compute_vector(horse):
 
     return vector, speed_in_next_race
 
+def plot_pred_and_true(predicted_values, true_values):
+    plt.plot(predicted_values, 'r', true_values, 'bo')
+    plt.xlabel('Data Points')
+    plt.ylabel('Speed (miles/hour)')
+    plt.title('Predicted and True Speed Values')
+    plt.show()
+
+def plot_speeds(speeds, colour, title):
+    plt.plot(speeds, colour)
+    plt.xlabel('Data Points')
+    plt.ylabel('Speed (miles/hour')
+    plt.title(title)
+    plt.show()
 
 def main():
     horses98 = HorseParserNoHandicaps('./../Data/born98.csv').horses
@@ -109,8 +123,20 @@ def main():
     print ''
 
     print 'Mean absolute error:'
-    print mean_absolute_error((regr98.predict(horses_98_X_test)), horses_98_y_test)
-    print ''   
+    print mean_absolute_error(horses_98_y_test, (regr98.predict(horses_98_X_test)))
+    print ''
+
+    print 'Explained variance:'
+    print explained_variance_score(horses_98_y_test, (regr98.predict(horses_98_X_test)))
+    print ''
+
+    print 'Mean squared error:'
+    print mean_squared_error(horses_98_y_test, (regr98.predict(horses_98_X_test)))
+    print ''
+
+    print 'R2 score:'
+    print r2_score(horses_98_y_test, (regr98.predict(horses_98_X_test)))
+    print ''
 
 
     ''' HorsesBorn05 Dataset '''
@@ -151,7 +177,7 @@ def main():
     print regr05.coef_
     print ''
 
-    # Mean square error
+   # Mean square error
     print 'Residual sum of squares:' 
     print np.mean((regr05.predict(horses_05_X_test) - horses_05_y_test) ** 2)
     print ''
@@ -162,8 +188,34 @@ def main():
     print ''
 
     print 'Mean absolute error:'
-    print mean_absolute_error((regr05.predict(horses_05_X_test)), horses_05_y_test)
-    print ''  
+    print mean_absolute_error(horses_05_y_test, (regr05.predict(horses_05_X_test)))
+    print ''
+
+    print 'Explained variance:'
+    print explained_variance_score(horses_05_y_test, (regr05.predict(horses_05_X_test)))
+    print ''
+
+    print 'Mean squared error:'
+    print mean_squared_error(horses_05_y_test, (regr05.predict(horses_05_X_test)))
+    print ''
+
+    print 'R2 score:'
+    print r2_score(horses_05_y_test, (regr05.predict(horses_05_X_test)))
+    print ''
+
+
+    # Plots
+    horses_98_y_pred = regr98.predict(horses_98_X_test)
+    horses_05_y_pred = regr05.predict(horses_05_X_test)
+    
+
+    plot_speeds(horses_98_y_pred, 'r', 'Predicted Speeds for Horses1998 Test Set')
+    plot_speeds(horses_98_y_test, 'r', 'Actual Speeds for Horses1998 Test Set')
+
+    plot_speeds(horses_05_y_pred, 'b', 'Predicted Speeds for Horses2005 Test Set')
+    plot_speeds(horses_05_y_test, 'b', 'Actual Speeds for Horses2005 Test Set')
+
+    plot_pred_and_true(horses_05_y_pred, horses_05_y_test)
 
 
 if __name__ == "__main__":
