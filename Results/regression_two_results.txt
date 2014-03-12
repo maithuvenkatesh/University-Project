@@ -19,6 +19,15 @@ Variance score:
 Mean absolute error:
 0.637915160056
 
+Explained variance:
+0.362859307977
+
+Mean squared error:
+0.706111185684
+
+R2 score:
+0.359757424622
+
 No. of instances in training set:
 1621
 1621
@@ -39,4 +48,13 @@ Variance score:
 
 Mean absolute error:
 0.557103809437
+
+Explained variance:
+0.385017091866
+
+Mean squared error:
+0.554122298683
+
+R2 score:
+0.383767214712
 
