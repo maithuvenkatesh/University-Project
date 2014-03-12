@@ -9,8 +9,19 @@ def goings_vs_speed(horses_train):
     # Get the goings in the training set
     goings = set()
     for h in horses_train:
-        for r in h_tr.races:
+        for r in h.races:
             goings.add(r.going)
+
+    speeds_per_going = Counter()
+    for g in goings:
+        going_speeds = []
+        for h in horses_train:
+            for r in h.races:
+                if r.going == g:
+                    g_speeds.apped(r.horse_speed)
+        speeds_per_going[g] = going_speeds
+
+    print speeds_per_going
 
 def age_vs_speed(horses_train):
     average_speeds_per_age = Counter()
@@ -19,6 +30,13 @@ def age_vs_speed(horses_train):
             average_speeds_per_age[r.horse_age] = r.horse_speed
 
     ages = average
+
+def class_vs_speed(horses_train, races):
+    average_speeds_per_class = Counter()
+    for h in horses_train:
+        for r in h.races:
+            av_speed = races[r.race_key].calculate_average_speed()
+
 
 
 def rating_vs_speed(horses_train):
@@ -34,10 +52,6 @@ def rating_vs_speed(horses_train):
     plt.scatter(ratings, speeds, color='black')
     plt.show()
 
-'''
-def class_vs_speed(horses_training_set):
-'''
-
 def prize_money_vs_speed(horses_training_set):
     prize_money_and_speeds = Counter()
     for h in horses_train:
@@ -46,6 +60,9 @@ def prize_money_vs_speed(horses_training_set):
 
     prize_money = prize_money_and_speeds.keys()
     speeds = [prize_money_and_speeds[r] for r in ratings]
+
+    plt.scatter(prize_money, speeds, color='black')
+    plt.show()
 
 def main():
     horses98 = HorseParserNoHandicaps('./../Data/born98.csv').horses
@@ -59,8 +76,8 @@ def main():
 
     print 'HorsesBorn98 Training Set:'
     print 'No. of horses: ' + str(len(horses_train_98))
-    rating_vs_speed(horses_train_98)
-
+    #rating_vs_speed(horses_train_98)  
+    goings_vs_speed(horses_train_98)
 
     print 'HorsesBorn05 Training Set:'
     print 'No. of horses: ' + str(len(horses_train_05))
