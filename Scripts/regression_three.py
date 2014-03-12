@@ -2,6 +2,7 @@ import numpy as np
 import pylab as pl
 import random
 import matplotlib.pyplot as plt
+from collections import Counter
 from race_parser_no_handicaps import RaceParserNoHandicaps
 from horse_parser_no_handicaps import HorseParserNoHandicaps
 from utilities import split_dataset
@@ -64,8 +65,29 @@ def plot_speeds(speeds, colour, title):
     plt.plot(speeds, colour)
     plt.xlabel('Data Points')
     plt.ylabel('Speed (miles/hour')
-    plt.title(title)
+    #plt.title(title)
     plt.show()
+
+def speed_counts(predicted_speeds, actual_speeds):
+    actual_speeds_counts = Counter()
+    predicted_speeds_counts = Counter()
+
+    for ps in predicted_speeds:
+        predicted_speeds_counts[ps] += 1
+
+    for acs in actual_speeds:
+        actual_speeds_counts[acs] += 1
+
+    sorted(actual_speeds_counts)
+    print actual_speeds_counts
+    acs_speeds = [actual_speeds_counts[acs] for acs in actual_speeds_counts]
+    acs_speeds_counts = actual_speeds_counts.keys()
+
+    # Plot histogram
+    pl.figure()
+    bins = acs_speeds
+    n, bins, patches = pl.hist(acs_speeds_counts, bins, normed=1, histtype='bar', rwidth=0.8)
+
 
 def main():
     horses98 = HorseParserNoHandicaps('./../Data/born98.csv').horses
@@ -112,11 +134,6 @@ def main():
     print regr98.coef_
     print ''
 
-    # Mean square error
-    print 'Residual sum of squares:' 
-    print np.mean((regr98.predict(horses_98_X_test) - horses_98_y_test) ** 2)
-    print ''
-
     # Explained variance score: 1 is perfect prediction
     print 'Variance score:'
     print regr98.score(horses_98_X_test, horses_98_y_test)
@@ -136,6 +153,10 @@ def main():
 
     print 'R2 score:'
     print r2_score(horses_98_y_test, (regr98.predict(horses_98_X_test)))
+    print ''
+
+    print 'Mean absolute error based on training set:'
+    print mean_absolute_error(horses_98_y_train, (regr98.predict(horses_98_X_train)))
     print ''
 
 
@@ -177,11 +198,6 @@ def main():
     print regr05.coef_
     print ''
 
-   # Mean square error
-    print 'Residual sum of squares:' 
-    print np.mean((regr05.predict(horses_05_X_test) - horses_05_y_test) ** 2)
-    print ''
-
     # Explained variance score: 1 is perfect prediction
     print 'Variance score:'
     print regr05.score(horses_05_X_test, horses_05_y_test)
@@ -203,6 +219,10 @@ def main():
     print r2_score(horses_05_y_test, (regr05.predict(horses_05_X_test)))
     print ''
 
+    print 'Mean absolute error based on training set:'
+    print mean_absolute_error(horses_05_y_train, (regr05.predict(horses_05_X_train)))
+    print ''
+
 
     # Plots
     horses_98_y_pred = regr98.predict(horses_98_X_test)
@@ -215,7 +235,8 @@ def main():
     plot_speeds(horses_05_y_pred, 'b', 'Predicted Speeds for Horses2005 Test Set')
     plot_speeds(horses_05_y_test, 'b', 'Actual Speeds for Horses2005 Test Set')
 
-    plot_pred_and_true(horses_05_y_pred, horses_05_y_test)
+    #plot_pred_and_true(horses_05_y_pred, horses_05_y_test)
+    #speed_counts(horses_05_y_pred, horses_05_y_test)
 
 
 if __name__ == "__main__":
