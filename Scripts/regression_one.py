@@ -82,10 +82,6 @@ def main():
     print regr98.coef_
     print ''
 
-    # Mean square error
-    print 'Residual sum of squares:' 
-    print np.mean((regr98.predict(horses_98_X_test) - horses_98_y_test) ** 2)
-    print ''
 
     # Explained variance score: 1 is perfect prediction
     print 'Variance score:'
@@ -145,11 +141,6 @@ def main():
     # Coefficients
     print 'Coefficients:'
     print regr05.coef_
-    print ''
-
-   # Mean square error
-    print 'Residual sum of squares:' 
-    print np.mean((regr05.predict(horses_05_X_test) - horses_05_y_test) ** 2)
     print ''
 
     # Explained variance score: 1 is perfect prediction

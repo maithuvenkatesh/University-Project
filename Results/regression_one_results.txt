@@ -10,9 +10,6 @@ Coefficients:
 [  5.54775320e-01   4.17443946e-03  -6.45949441e-03   6.30950177e-06
   -8.05042004e-04]
 
-Residual sum of squares:
-0.756088376981
-
 Variance score:
 0.474928820122
 
@@ -39,9 +36,6 @@ No. of instances in testing set:
 Coefficients:
 [  7.09738587e-01   2.48757697e-03  -4.91564807e-03   2.88295368e-06
   -6.03790463e-04]
-
-Residual sum of squares:
-0.568912565572
 
 Variance score:
 0.538755962909

@@ -29,6 +29,8 @@ Mean squared error:
 R2 score:
 0.420412618608
 
+Mean absolute error based on training set:
+0.606478406843
 No. of instances in training set:
 1621
 1621
@@ -60,3 +62,5 @@ Mean squared error:
 R2 score:
 0.445592479535
 
+Mean absolute error based on training set:
+0.535397968248
