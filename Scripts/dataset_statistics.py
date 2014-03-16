@@ -101,11 +101,17 @@ def races_with_winning_horse(races):
 '''
 
 def main():
-    horses98 = HorseParser('./../Data/born98.csv').horses
-    horses05 = HorseParser('./../Data/born05.csv').horses
+    horse_parser_98 = HorseParser('./../Data/born98.csv')
+    horse_parser_05 = HorseParser('./../Data/born05.csv')
 
-    races98 = RaceParser('./../Data/born98.csv').races
-    races05 = RaceParser('./../Data/born05.csv').races
+    race_parser_98 = RaceParser('./../Data/born98.csv')
+    race_parser_05 = RaceParser('./../Data/born05.csv')
+
+    horses98 = horse_parser_98.horses
+    horses05 = horse_parser_05.horses
+
+    races98 = race_parser_98.races
+    races05 = race_parser_05.races
 
     full_races_98 = get_full_races(races98)
     full_races_05 = get_full_races(races05)
@@ -138,6 +144,10 @@ def main():
     print 'Average no. of races per horse: ' + str(average_races_per_horse_98)
     print 'No. of races for horses at each age: ' + str(no_of_races_per_age_98)
     print 'No. of races with k-missing horse records: ' + str(races_with_k_missing_horses_98)
+    print 'No. of horse records with comptime missing: ' + str(horse_parser_98.comptime_missing)
+    print 'No. of race records with comptime missing: ' + str(race_parser_98.comptime_missing)
+    print 'No. of horse records with Irish race class: ' + str(horse_parser_98.irish_races)
+    print 'No. of race records with Irish race class ' + str(race_parser_98.irish_races)
 
     print ''
 
@@ -151,7 +161,10 @@ def main():
     print 'Average no. of races per horse: ' + str(average_races_per_horse_05)
     print 'No. of races for horses at each age: ' + str(no_of_races_per_age_05)
     print 'No. of races with k-missing horse records: ' + str(races_with_k_missing_horses_05)
-    
+    print 'No. of horse records with comptime missing: ' + str(horse_parser_05.comptime_missing)
+    print 'No. of race records with comptime missing: ' + str(race_parser_05.comptime_missing)
+    print 'No. of horse records with Irish race class: ' + str(horse_parser_05.irish_races)
+    print 'No. of race records with Irish race class ' + str(race_parser_05.irish_races)    
 
 if __name__ == "__main__":
 	main()
