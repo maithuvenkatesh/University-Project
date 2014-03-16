@@ -32,11 +32,12 @@ class Horse:
 
     def add_race(self, race):
         self.races.append(race)
-        #self.races[race.race_key] = race
 
 class HorseParserNoHandicaps:
     def __init__(self, filepath):
         self.horses = {}
+        self.comptime_missing = 0
+        self.irish_races = 0
 
         with open(filepath) as f:
             attributes = f.readline().strip().split()
@@ -78,8 +79,6 @@ class HorseParserNoHandicaps:
 
                 if re.search('handicap', race_name) or re.search('nursery', race_name):
                     continue
-
-                race_key = race_name + race_date + race_time + race_track
 
                 race_date = race_date.split('-')
                 year = int(race_date[0])
@@ -138,6 +137,7 @@ class HorseParserNoHandicaps:
                 race_grade = 0
                 
                 if race_class == 'Irish':
+                    self.irish_races += 1
                     race_class = 8
                 elif race_class == 1:
                     race_grade = int(data[major_idx][1:-1].strip().split()[-1])
@@ -156,17 +156,14 @@ class HorseParserNoHandicaps:
 
                 horse_age = int(data[horse_age_idx][1:-1])
 
-                # TODO - check horse placing codes
                 horse_place = data[horse_place_idx][1:-1].strip()
                 match = re.search(re.compile('\d'), horse_place)
                 if match:
                     horse_place = [int(s) for s in horse_place if s.isdigit()]
-                    if len(horse_place) == 0:
-                        horse_place = 0
-                    else:
+                    if len(horse_place) != 0:
                         horse_place = int(''.join(map(str, horse_place)))
                 else:
-                    horse_place = 0
+                    horse_place = no_of_runners
 
                 winner = ''
                 if horse_place == 1:
@@ -181,6 +178,7 @@ class HorseParserNoHandicaps:
                 comptime = 60 * float(comptime[0]) + float(comptime[2][:-1])
 
                 if comptime == 0.0:
+                    self.comptime_missing += 1
                     continue
                 
                 trainer = data[trainer_idx][1:-1].strip()
@@ -189,7 +187,7 @@ class HorseParserNoHandicaps:
                 rating = float(data[rating_idx][1:-1].strip())
 
                 horse_speed = float(race_distance)/float(comptime)
-
+                
                 race = Race(race_key, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed, rating, comptime)
                 horse = Horse(horse_name, horse_key) 
 
@@ -199,11 +197,11 @@ class HorseParserNoHandicaps:
                     self.horses[horse_key] = horse
                     self.horses[horse_key].add_race(race)
 
-'''
-def main():
-    horses = HorseParser('./../Data/born98.csv').horses
 
+def main():
+    horse_parser_98 = HorseParser('./../Data/born98.csv')
+    horse_parser_05 = HorseParser('./../Data/born05.csv')
+    #horses98 = horse_parser_98.horses
 
 if __name__ == "__main__":
     main()
-'''
