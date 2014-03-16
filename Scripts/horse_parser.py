@@ -32,12 +32,12 @@ class Horse:
 
     def add_race(self, race):
         self.races.append(race)
-        #self.races[race.race_key] = race
 
 class HorseParser:
     def __init__(self, filepath):
         self.horses = {}
-        self.discarded_records = 0
+        self.comptime_missing = 0
+        self.irish_races = 0
 
         with open(filepath) as f:
             attributes = f.readline().strip().split()
@@ -136,6 +136,7 @@ class HorseParser:
                 race_grade = 0
                 
                 if race_class == 'Irish':
+                    self.irish_races += 1
                     race_class = 8
                 elif race_class == 1:
                     race_grade = int(data[major_idx][1:-1].strip().split()[-1])
@@ -154,17 +155,14 @@ class HorseParser:
 
                 horse_age = int(data[horse_age_idx][1:-1])
 
-                # TODO - check horse placing codes
                 horse_place = data[horse_place_idx][1:-1].strip()
                 match = re.search(re.compile('\d'), horse_place)
                 if match:
                     horse_place = [int(s) for s in horse_place if s.isdigit()]
-                    if len(horse_place) == 0:
-                        horse_place = 0
-                    else:
+                    if len(horse_place) != 0:
                         horse_place = int(''.join(map(str, horse_place)))
                 else:
-                    horse_place = 0
+                    horse_place = no_of_runners
 
                 winner = ''
                 if horse_place == 1:
@@ -179,7 +177,7 @@ class HorseParser:
                 comptime = 60 * float(comptime[0]) + float(comptime[2][:-1])
 
                 if comptime == 0.0:
-                    self.discarded_records += 1
+                    self.comptime_missing += 1
                     continue
                 
                 trainer = data[trainer_idx][1:-1].strip()
@@ -188,7 +186,7 @@ class HorseParser:
                 rating = float(data[rating_idx][1:-1].strip())
 
                 horse_speed = float(race_distance)/float(comptime)
-
+                
                 race = Race(race_key, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, horse_place, horse_age, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed, rating, comptime)
                 horse = Horse(horse_name, horse_key) 
 
@@ -200,12 +198,11 @@ class HorseParser:
 
 
 def main():
-    horses = HorseParser('./../Data/born98.csv').horses
-    '''
-    for h in horses:
-        for r in horses[h].races:
-            values = [r.track, r.date, r.time, r.name, r.prize_money, r.race_restrictions, r.no_of_runners, r.going, r.race_class, r.race_distance, r.horse_place, r.horse_age, r.weight, r.jockey_name, r.jockeys_claim, r.trainer, r.odds, r.horse_speed, r.rating]
-            print values
-    '''
+    horse_parser_98 = HorseParser('./../Data/born98.csv')
+    horse_parser_05 = HorseParser('./../Data/born05.csv')
+    #horses98 = horse_parser_98.horses
+
+
+    
 if __name__ == "__main__":
     main()

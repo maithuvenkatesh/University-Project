@@ -44,7 +44,8 @@ class Horse:
 class RaceParser:
     def __init__(self, filepath):
         self.races = {}
-        self.discarded_records = 0
+        self.comptime_missing = 0
+        self.irish_races = 0
 
         with open(filepath) as f:
             attributes = f.readline().strip().split()
@@ -143,6 +144,7 @@ class RaceParser:
                 race_grade = 0
                 
                 if race_class == 'Irish':
+                    self.irish_races += 1
                     race_class = 8
                 elif race_class == 1:
                     race_grade = int(data[major_idx][1:-1].strip().split()[-1])
@@ -161,23 +163,11 @@ class RaceParser:
 
                 horse_age = int(data[horse_age_idx][1:-1])
 
-                # Converts comptime to seconds
-                comptime = data[comptime_idx][1:-1].strip()
-                comptime = comptime.split()
-                comptime = 60 * float(comptime[0]) + float(comptime[2][:-1])
-
-                if comptime == 0.0:
-                    self.discarded_records += 1
-                    continue
-
-                # TODO - check horse placing codes
                 horse_place = data[horse_place_idx][1:-1].strip()
                 match = re.search(re.compile('\d'), horse_place)
                 if match:
                     horse_place = [int(s) for s in horse_place if s.isdigit()]
-                    if len(horse_place) == 0:
-                        horse_place = 0
-                    else:
+                    if len(horse_place) != 0:
                         horse_place = int(''.join(map(str, horse_place)))
                 else:
                     horse_place = no_of_runners
@@ -188,6 +178,15 @@ class RaceParser:
 
                 weight = float(data[weight_pounds_idx][1:-1].strip())
                 odds = float(data[odds_idx][1:-1].strip())
+
+                # Converts comptime to seconds
+                comptime = data[comptime_idx][1:-1].strip()
+                comptime = comptime.split()
+                comptime = 60 * float(comptime[0]) + float(comptime[2][:-1])
+
+                if comptime == 0.0:
+                    self.comptime_missing += 1
+                    continue
 				
                 trainer = data[trainer_idx][1:-1].strip()
                 jockey_name = data[jockey_name_idx][1:-1].strip()
