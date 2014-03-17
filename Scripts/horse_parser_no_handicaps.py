@@ -80,6 +80,8 @@ class HorseParserNoHandicaps:
                 if re.search('handicap', race_name) or re.search('nursery', race_name):
                     continue
 
+                race_key = race_name + race_date + race_time + race_track
+
                 race_date = race_date.split('-')
                 year = int(race_date[0])
                 month = int(race_date[1])
