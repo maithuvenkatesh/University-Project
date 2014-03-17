@@ -22,4 +22,4 @@ odds
 fav	
 official_rating	
 comptime	
-TotalDstBt	* May be mising
+TotalDstBt	* May be missing

@@ -27,7 +27,7 @@ class Race:
         return total_speed/len(self.horses) 
 
 class Horse:
-    def __init__(self, horse_name, horse_key, horse_age, horse_place, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed, horse_comptime):
+    def __init__(self, horse_name, horse_key, horse_age, horse_place, weight_carried, jockey_name, jockeys_claim, trainer, horse_odds, horse_speed, horse_comptime, stall_no):
         self.name = horse_name
         self.horse_key = horse_key
         self.age = horse_age
@@ -39,6 +39,7 @@ class Horse:
         self.odds = horse_odds
         self.speed = horse_speed
         self.comptime = horse_comptime
+        self.stall_no = stall_no
 
 
 class RaceParser:
@@ -195,8 +196,10 @@ class RaceParser:
 
                 horse_speed = float(race_distance)/float(comptime)
 
+                stall_no = int(data[stall_idx][1:-1].strip())
+
                 race = Race(race_key, race_track, race_date, race_time, race_name, prize_money, race_restrictions, no_of_runners, going, race_class, race_distance, winner)
-                horse = Horse(horse_name, horse_key, horse_age, horse_place, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed, comptime) 
+                horse = Horse(horse_name, horse_key, horse_age, horse_place, weight, jockey_name, jockeys_claim, trainer, odds, horse_speed, comptime, stall_no) 
                 	
                 try:                    
                     self.races[race_key].add_horse(horse)
@@ -204,12 +207,11 @@ class RaceParser:
                     self.races[race_key] = race
                     self.races[race_key].add_horse(horse)
 
-'''
+
 def main():
     races98 = RaceParser('./../Data/born98.csv').races
-    
     races05 = RaceParser('./../Data/born05.csv').races
-'''
+
 
 
 if __name__ == "__main__":
