@@ -69,7 +69,7 @@ def main():
     races98 = RaceParserNoHandicaps('./../Data/born98.csv').races
     races05 = RaceParserNoHandicaps('./../Data/born05.csv').races
 
-    ''' HorsesBorn98 Dataset '''
+    print 'HorsesBorn98 Dataset'
     horses_train_98, horses_test_98 = split_dataset(horses98)
 
     horses_98_X_train = []
@@ -96,12 +96,15 @@ def main():
     print len(horses_98_y_test)
     print ''
     
+    print 'Create SVR object'
     # Create svr object
-    svr98 = SVR(kernel='poly', C=1e3, gamma=0.1)
+    svr98 = SVR(kernel='linear', C=1e3)#, gamma=0.1)
 
+    print 'Training SVR'
     # Train the model using the training sets
     svr98.fit(horses_98_X_train, horses_98_y_train)
 
+    print 'Predicting'
     horses_98_y_pred = svr98.predict(horses_98_X_test)
 
     # Explained variance score: 1 is perfect prediction
@@ -125,8 +128,9 @@ def main():
     print r2_score(horses_98_y_test, horses_98_y_pred)
     print ''
 
+'''
 
-    ''' HorsesBorn05 Dataset '''
+    print 'HorsesBorn05 Dataset'
     horses_train_05, horses_test_05 = split_dataset(horses05)
 
     horses_05_X_train = []
@@ -184,9 +188,6 @@ def main():
 
 
     # Plots
-    
-    
-
     plot_speeds(horses_98_y_pred, 'r', 'Predicted Speeds for Horses1998 Test Set')
     plot_speeds(horses_98_y_test, 'r', 'Actual Speeds for Horses1998 Test Set')
 
@@ -196,6 +197,6 @@ def main():
     #plot_pred_and_true(horses_05_y_pred, horses_05_y_test)
     #speed_counts(horses_05_y_pred, horses_05_y_test)
 
-
+'''
 if __name__ == "__main__":
     main()
