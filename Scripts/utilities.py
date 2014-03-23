@@ -30,19 +30,35 @@ def split_dataset(horses):
     return horses_train, horses_test
 
 ''' Computes the mean relative absolute error '''
-def mean_relative_absolute_error(predicted_values, actual_values):
+def ell1(actual_values, predicted_values):
     N = len(predicted_values)
     differences = np.subtract(predicted_values,actual_values)
     differences = differences/actual_values
-    return difference/N
+    return sum(differences)/float(N)
 
-def mean_relative_squared_error(predicted_values, actual_values):
+def ell2(actual_values, predicted_values):
     N = len(predicted_values)
     differences = np.subtract(actual_values, predicted_values)
     differences = differences/actual_values
     differences = differences * differences
     np.sqrt(differences)
-    return difference/N
+    return sum(differences)/float(N)
+
+def r1(actual_values, predicted_values):
+    mean_actual_values = np.mean(actual_values)
+    N = len(actual_values)
+
+    err_differences = np.subtract(actual_values, predicted_values)
+    abs_err_differences = np.absolute(err_differences)
+    abs_sum_err_differences = np.sum(abs_err_differences)
+
+    mean_differences = np.subtract(actual_values,mean_actual_values)
+    abs_mean_differences = np.absolute(mean_differences)
+    abs_sum_mean_differences = np.sum(abs_mean_differences)
+
+    r1_score = np.divide(abs_sum_err_differences, abs_sum_mean_differences)
+
+    return 1.0-r1_score
 
 def main():
     '''

@@ -47,6 +47,7 @@ class RaceParser:
         self.races = {}
         self.comptime_missing = 0
         self.irish_races = 0
+        self.handicap_races = 0
 
         with open(filepath) as f:
             attributes = f.readline().strip().split()
@@ -85,6 +86,9 @@ class RaceParser:
                 race_time = data[race_time_idx][1:-1].strip()
                 race_track = data[race_track_idx][1:-1].strip()
                 race_name = data[race_name_idx][1:-1].strip()
+
+                if re.search('handicap', race_name) or re.search('nursery', race_name):
+                    self.handicap_race += 1
 
                 race_key = race_name + race_date + race_time + race_track
 

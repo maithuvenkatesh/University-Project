@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from collections import Counter
+from collections import Counter, defaultdict
 from horse_parser import HorseParser 
 from race_parser import RaceParser 
 
@@ -19,15 +19,16 @@ def get_race_counts(races, going_set):
 
     return race_counts
 
+def going_class(horses):
+    going_class = defaultdict(set)
+    for h in horses:
+        for r in h.races:
+            going_class[r.going].add(r.race_class)
 
-'''            
-def average_speed_on_each_going(races, going_race_counts):
-    average_speed_on_each_going = Counter()
-    
-    for r in races:
-        if races[r].going == g:
-
-'''
+    for g in going_class:
+        print g
+        print going_class[g]
+        print ''
 
 def plot_going_race_count(going_race_counts_1, going_race_counts_2, graph_title):
     going_types_1, race_count_1 = zip(*going_race_counts_1.items())
@@ -63,6 +64,7 @@ def main():
 
     print ''
 
+    '''
     # Find the missing going and add it to the other dataset
     if len(goings98) > len(goings05):
         missing_going = goings98 - goings05
@@ -73,8 +75,8 @@ def main():
     going_race_counts_05 = get_race_counts(races05, goings05)
 
     plot_going_race_count(going_race_counts_98, going_race_counts_05, 'hhdghdg')
+    '''
 
-    
 
 
 

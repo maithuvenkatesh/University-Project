@@ -39,6 +39,7 @@ class HorseParser:
         self.horses = {}
         self.comptime_missing = 0
         self.irish_races = 0
+        self.handicap_races = 0
 
         with open(filepath) as f:
             attributes = f.readline().strip().split()

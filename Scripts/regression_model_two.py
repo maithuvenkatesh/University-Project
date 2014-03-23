@@ -2,17 +2,18 @@ import numpy as np
 import pylab as pl
 import random
 import matplotlib.pyplot as plt
-from collections import Counter
 from race_parser_no_handicaps import RaceParserNoHandicaps
 from horse_parser_no_handicaps import HorseParserNoHandicaps
-from utilities import split_dataset
+from utilities import split_dataset, ell1, ell2
 from sklearn import linear_model, cross_validation
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score, explained_variance_score
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 
-''' Regression Experiment 3: Baseline experiment '''
+''' Regression Model Two: Remove '''
 
 def compute_vector(horse):
     vector = []
+
+    # Races sorted in ascending order - last race is most recent
     sorted_races = sorted(horse.races, key=lambda x:x.date, reverse=False)
 
     # Determine the next race of the horse between 4 and the second last race
@@ -25,7 +26,7 @@ def compute_vector(horse):
     average_odds = 0.0
     average_prize_money = 0.0
     average_distance = 0.0
-    
+
     for r in sorted_races[:next_race_number]:
         average_speed += r.horse_speed
         average_rating += r.horse_rating
@@ -51,43 +52,14 @@ def compute_vector(horse):
     vector.append(previous_race.horse_odds)
     vector.append(previous_race.horse_rating)
     vector.append(previous_race.horse_speed)
+    vector.append(previous_race.weight_carried)
+    vector.append(previous_race.jockeys_claim)
+    vector.append(previous_race.horse_comptime)
+    vector.append(previous_race.horse_place)
+    vector.append(previous_race.stall_no)
+    vector.append(previous_race.prize * previous_race.horse_odds)
 
     return vector, speed_in_next_race
-
-def plot_pred_and_true(predicted_values, true_values):
-    plt.plot(predicted_values, 'r', true_values, 'bo')
-    plt.xlabel('Data Points')
-    plt.ylabel('Speed (miles/hour)')
-    plt.title('Predicted and True Speed Values')
-    plt.show()
-
-def plot_speeds(speeds, colour, title):
-    plt.plot(speeds, colour)
-    plt.xlabel('Data Points')
-    plt.ylabel('Speed (miles/hour')
-    #plt.title(title)
-    plt.show()
-
-def speed_counts(predicted_speeds, actual_speeds):
-    actual_speeds_counts = Counter()
-    predicted_speeds_counts = Counter()
-
-    for ps in predicted_speeds:
-        predicted_speeds_counts[ps] += 1
-
-    for acs in actual_speeds:
-        actual_speeds_counts[acs] += 1
-
-    sorted(actual_speeds_counts)
-    print actual_speeds_counts
-    acs_speeds = [actual_speeds_counts[acs] for acs in actual_speeds_counts]
-    acs_speeds_counts = actual_speeds_counts.keys()
-
-    # Plot histogram
-    pl.figure()
-    bins = acs_speeds
-    n, bins, patches = pl.hist(acs_speeds_counts, bins, normed=1, histtype='bar', rwidth=0.8)
-
 
 def main():
     horses98 = HorseParserNoHandicaps('./../Data/born98.csv').horses
@@ -124,31 +96,44 @@ def main():
     print ''
     
     # Create linear regression object
-    regr98 = linear_model.LinearRegression()
+    regr98 = linear_model.LinearRegression(fit_intercept=True)
+
+    # Cross-validation
+    cv_scores_98 = cross_validation.cross_val_score(regr98, np.array(horses_98_X_train), np.array(horses_98_y_train), scoring='mean_squared_error', cv=5)
+
+    #print regr98.coeff_
+
+    # Print CV scores
+    print '5-fold CV scores using MSE:'
+    print cv_scores_98
+    print ''
+
+    # Mean and SD of estimate score
+    print 'Mean of scores: ' + str(cv_scores_98.mean())
+    print 'SD of scores: ' + str(cv_scores_98.std() * 2)
+    print ''
 
     # Train the model using the training sets
-    regr98.fit(horses_98_X_train, horses_98_y_train)
+    regr98.fit(np.array(horses_98_X_train), np.array(horses_98_y_train))
 
     # Coefficients
     print 'Coefficients:'
     print regr98.coef_
     print ''
 
-    # Explained variance score: 1 is perfect prediction
-    print 'Variance score:'
-    print regr98.score(horses_98_X_test, horses_98_y_test)
+    print 'Intercept: '
+    print regr98.intercept_
+    print ''
+
+    # Predict using the testing set
+    horses_98_y_pred = regr98.predict(horses_98_X_test)
+
+    print 'Mean squared error:'
+    print mean_squared_error(horses_98_y_test, horses_98_y_pred)
     print ''
 
     print 'Mean absolute error:'
-    print mean_absolute_error(horses_98_y_test, (regr98.predict(horses_98_X_test)))
-    print ''
-
-    print 'Explained variance:'
-    print explained_variance_score(horses_98_y_test, (regr98.predict(horses_98_X_test)))
-    print ''
-
-    print 'Mean squared error:'
-    print mean_squared_error(horses_98_y_test, (regr98.predict(horses_98_X_test)))
+    print mean_absolute_error(horses_98_y_test, horses_98_y_pred)
     print ''
 
 
@@ -182,49 +167,41 @@ def main():
     # Create linear regression object
     regr05 = linear_model.LinearRegression(fit_intercept=True)
 
+    # Cross-validation
+    cv_scores_05 = cross_validation.cross_val_score(regr05, np.array(horses_05_X_train), np.array(horses_05_y_train), scoring='mean_squared_error', cv=5)
+
+    # Print CV scores
+    print '5-fold CV scores using MSE:'
+    print cv_scores_05
+    print ''
+
+    # Mean and SD of estimate score
+    print 'Mean of scores: ' + str(cv_scores_05.mean())
+    print 'SD of scores: ' + str(cv_scores_05.std() * 2)
+    print ''
+
     # Train the model using the training sets
-    regr05.fit(horses_05_X_train, horses_05_y_train)
+    regr05.fit(np.array(horses_05_X_train), np.array(horses_05_y_train))
 
     # Coefficients
     print 'Coefficients:'
     print regr05.coef_
     print ''
 
-    # Explained variance score: 1 is perfect prediction
-    print 'Variance score:'
-    print regr05.score(horses_05_X_test, horses_05_y_test)
+    print 'Intercept: '
+    print regr05.intercept_
+    print ''
+
+    # Predict using the testing set
+    horses_05_y_pred = regr05.predict(horses_05_X_test)
+
+    print 'Mean squared error:'
+    print mean_squared_error(horses_05_y_test, horses_05_y_pred)
     print ''
 
     print 'Mean absolute error:'
-    print mean_absolute_error(horses_05_y_test, (regr05.predict(horses_05_X_test)))
+    print mean_absolute_error(horses_05_y_test, horses_05_y_pred)
     print ''
-
-    print 'Explained variance:'
-    print explained_variance_score(horses_05_y_test, (regr05.predict(horses_05_X_test)))
-    print ''
-
-    print 'Mean squared error:'
-    print mean_squared_error(horses_05_y_test, (regr05.predict(horses_05_X_test)))
-    print ''
-
-    print 'R2 score:'
-    print r2_score(horses_05_y_test, (regr05.predict(horses_05_X_test)))
-    print ''
-
-    print 'Mean absolute error based on training set:'
-    print mean_absolute_error(horses_05_y_train, (regr05.predict(horses_05_X_train)))
-    print ''
-
-
-    # Plots
-    horses_98_y_pred = regr98.predict(horses_98_X_test)
-    horses_05_y_pred = regr05.predict(horses_05_X_test)
-
-    plot_speeds(horses_98_y_pred, 'r', 'Predicted Speeds for Horses1998 Test Set')
-    plot_speeds(horses_98_y_test, 'r', 'Actual Speeds for Horses1998 Test Set')
-
-    plot_speeds(horses_05_y_pred, 'b', 'Predicted Speeds for Horses2005 Test Set')
-    plot_speeds(horses_05_y_test, 'b', 'Actual Speeds for Horses2005 Test Set')
 
 
 if __name__ == "__main__":

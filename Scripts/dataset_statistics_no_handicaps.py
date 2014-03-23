@@ -1,6 +1,4 @@
 from collections import Counter
-from horse_parser import HorseParser 
-from race_parser import RaceParser 
 from horse_parser_no_handicaps import HorseParserNoHandicaps
 from race_parser_no_handicaps import RaceParserNoHandicaps
 
@@ -89,8 +87,7 @@ def races_with_k_runners(races):
     
     return races_with_k_horses
 
-#''' Computes the number of races which contain the information for the winning horse '''
-'''
+''' Computes the number of races which contain the information for the winning horse '''
 def races_with_winning_horse(races):
     races_with_winner = 0
 
@@ -100,20 +97,14 @@ def races_with_winning_horse(races):
                 races_with_winner += 1
 
     return races_with_winner
-'''
+
 
 def main():
-    horse_parser_98 = HorseParser('./../Data/born98.csv')
-    horse_parser_05 = HorseParser('./../Data/born05.csv')
+    horse_parser_98 = HorseParserNoHandicaps('./../Data/born98.csv')
+    horse_parser_05 = HorseParserNoHandicaps('./../Data/born05.csv')
 
-    race_parser_98 = RaceParser('./../Data/born98.csv')
-    race_parser_05 = RaceParser('./../Data/born05.csv')
-
-    horse_parser_no_handicaps_98 = HorseParserNoHandicaps('./../Data/born98.csv')
-    horse_parser_no_handicaps_05 = HorseParserNoHandicaps('./../Data/born05.csv')
-
-    race_parser_no_handicaps_98 = RaceParserNoHandicaps('./../Data/born98.csv')
-    race_parser_no_handicaps_05 = RaceParserNoHandicaps('./../Data/born05.csv')
+    race_parser_98 = RaceParserNoHandicaps('./../Data/born98.csv')
+    race_parser_05 = RaceParserNoHandicaps('./../Data/born05.csv')
 
     horses98 = horse_parser_98.horses
     horses05 = horse_parser_05.horses
@@ -125,10 +116,10 @@ def main():
     full_races_05 = get_full_races(races05)
 
     total_races_with_all_horses_98 = no_of_races_with_all_horses(races98)
-    total_races_with_winners_98 = no_of_races_with_winner(races98, horses98)
+    total_races_with_winners_98 = races_with_winning_horse(races98)
 
     total_races_with_all_horses_05 = no_of_races_with_all_horses(races05)
-    total_races_with_winners_05 = no_of_races_with_winner(races05, horses05)
+    total_races_with_winners_05 = races_with_winning_horse(races05)
 
     average_races_per_horse_98 = average_no_of_races_per_horse(horses98)
     average_races_per_horse_05 = average_no_of_races_per_horse(horses05)
@@ -142,7 +133,7 @@ def main():
     races_with_k_missing_horses_98 = races_with_k_missing_runners(races98)
     races_with_k_missing_horses_05 = races_with_k_missing_runners(races05)
 
-    print 'born98.csv file statistics:'
+    print 'born98.csv file statistics - without handicap races:'
     print 'No. of horses: ' + str(len(horses98))
     print 'No. of races: ' + str(len(races98))
     print 'No. of races for which we have all the horses: ' + str(total_races_with_all_horses_98)
@@ -156,11 +147,10 @@ def main():
     print 'No. of race records with comptime missing: ' + str(race_parser_98.comptime_missing)
     print 'No. of horse records with Irish race class: ' + str(horse_parser_98.irish_races)
     print 'No. of race records with Irish race class ' + str(race_parser_98.irish_races)
-    print 'No. of races without handicap races:' + str()
 
     print ''
 
-    print 'born05.csv file statistics:'
+    print 'born05.csv file statistics - without handicap races:'
     print 'No. of horses: ' + str(len(horses05))
     print 'No. of races: ' + str(len(races05))
     print 'No. of races for which we have all the horses: ' + str(total_races_with_all_horses_05)
@@ -176,4 +166,4 @@ def main():
     print 'No. of race records with Irish race class ' + str(race_parser_05.irish_races)    
 
 if __name__ == "__main__":
-	main()
+    main()
