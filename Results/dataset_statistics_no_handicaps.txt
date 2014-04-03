@@ -1,0 +1,41 @@
+born98.csv file statistics - without handicap races:
+No. of horses: 2725
+No. of races: 7407
+No. of races for which we have all the horses: 916
+No. of races for which we have the winner: 783
+Fraction of races for which we have all the horses: 0.123666801674
+Fraction of races for which we have the winner: 0.105710814095
+Average no. of races per horse: 8.8671559633
+No. of races for horses at each age: Counter({2: 825, 3: 91})
+No. of races with k-missing horse records: Counter({0: 916, 10: 658, 11: 619, 9: 592, 8: 591, 7: 515, 12: 509, 6: 484, 5: 395, 13: 371, 4: 333, 14: 298, 3: 242, 15: 186, 2: 150, 16: 138, 1: 114, 17: 101, 18: 69, 19: 34, 20: 17, 21: 17, 22: 14, 24: 9, 27: 8, 26: 7, 23: 6, 25: 6, 28: 4, 39: 2, 29: 1, 30: 1})
+No. of different trainers: 634
+No. of different jockeys: 822
+Going and Speed: 
+defaultdict(None, {'Firm': 16.433901347791494, 'Heavy': 14.429491818434421, 'Good To Soft': 15.321178229418111, 'Good': 15.60546081993005, 'Soft': 14.965299174648734, 'Hard': 15.844235804098906, 'Standard To Slow': 15.263682703662727, 'Fast': 15.654821666518592, 'Standard': 15.815179460306572, 'Good To Firm': 16.035323775788843, 'Slow': 15.24978293877757, 'Standard To Fast': 15.552866442075809})
+Race Class and Speed:
+defaultdict(None, {1: 15.884338169898788, 2: 15.95763728718532, 3: 15.204923624128805, 4: 15.48307193066337, 5: 15.783546526067248, 6: 15.830553855410392, 7: 15.687183870688568})
+Race Class and Distance:
+defaultdict(None, {1: 2128.4184000000014, 2: 1987.6124966139932, 3: 2453.4931515863705, 4: 2355.368275862057, 5: 1928.1930596026461, 6: 1749.742499999999, 7: 1677.6680786686832})
+Race Class and Prize:
+defaultdict(None, {1: 43971.97424242424, 2: 23878.234762979682, 3: 7688.07285546416, 4: 4271.7836990595615, 5: 3094.408388520971, 6: 2574.429166666667, 7: 1513.9909228441754})
+
+born05.csv file statistics - without handicap races:
+No. of horses: 3387
+No. of races: 5179
+No. of races for which we have all the horses: 1057
+No. of races for which we have the winner: 672
+Fraction of races for which we have all the horses: 0.204093454335
+Fraction of races for which we have the winner: 0.129754778915
+Average no. of races per horse: 6.07115441394
+No. of races for horses at each age: Counter({2: 960, 3: 96, 4: 1})
+No. of races with k-missing horse records: Counter({0: 1057, 6: 505, 7: 462, 5: 456, 8: 408, 4: 396, 9: 351, 10: 306, 3: 268, 11: 218, 2: 171, 12: 170, 13: 134, 1: 110, 14: 70, 15: 46, 16: 18, 17: 16, 18: 5, 25: 3, 19: 2, 21: 2, 26: 2, 20: 1, 22: 1, 30: 1})
+No. of different trainers: 613
+No. of different jockeys: 622
+Going and Speed: 
+defaultdict(None, {'Heavy': 14.335414399556708, 'Firm': 16.24372038391354, 'Good To Soft': 15.336258992940401, 'Good': 15.673004577665779, 'Soft To Heavy': 12.664143456695916, 'Soft': 15.044160195539607, 'Standard To Slow': 15.302147715847719, 'Fast': 15.346688206785135, 'Standard': 16.02265576733313, 'Good To Firm': 16.119059253879573, 'Slow': 15.719586270799516, 'Standard To Fast': 15.800745519513109})
+Race Class and Speed:
+defaultdict(None, {1: 16.117769404077897, 2: 16.05283461761956, 3: 15.57953859360107, 4: 15.217753651539072, 5: 15.804229451750787, 6: 15.970140523417758, 7: 15.905609515866255})
+Race Class and Distance:
+defaultdict(None, {1: 1926.1484307692344, 2: 1935.9773052631567, 3: 2257.0911340206176, 4: 2928.9189314079445, 5: 1962.3570817275674, 6: 1579.1687999999988, 7: 1639.5192000000002})
+Race Class and Prize:
+defaultdict(None, {1: 53328.316083916085, 2: 23674.436842105264, 3: 7089.168384879725, 4: 3720.8727436823106, 5: 2795.1083056478406, 6: 2010.722962962963, 7: 1605.85})

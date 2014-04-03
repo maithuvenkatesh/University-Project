@@ -1,0 +1,29 @@
+born98.csv file statistics:
+No. of horses: 3108
+No. of races: 19874
+No. of races for which we have all the horses: 1389
+No. of races for which we have the winner: 1782
+Fraction of races for which we have all the horses: 0.0698903089464
+Fraction of races for which we have the winner: 0.0896648887994
+Average no. of races per horse: 18.2528957529
+No. of races for horses at each age: Counter({2: 1106, 3: 283})
+No. of races with k-missing horse records: Counter({11: 1921, 10: 1827, 9: 1723, 12: 1602, 8: 1506, 0: 1389, 13: 1382, 7: 1303, 14: 1127, 6: 1037, 15: 891, 5: 777, 16: 601, 4: 554, 17: 449, 3: 369, 18: 284, 2: 266, 1: 250, 19: 193, 20: 90, 21: 83, 22: 65, 24: 52, 23: 39, 26: 28, 27: 23, 25: 19, 28: 10, 29: 9, 30: 3, 39: 2})
+No. of horse records with comptime missing: 40
+No. of race records with comptime missing: 40
+No. of race records with Irish race class 3173
+No. of handicap races: 11297
+
+born05.csv file statistics:
+No. of horses: 3993
+No. of races: 21502
+No. of races for which we have all the horses: 1803
+No. of races for which we have the winner: 2180
+Fraction of races for which we have all the horses: 0.0838526648684
+Fraction of races for which we have the winner: 0.101385917589
+Average no. of races per horse: 15.6113198097
+No. of races for horses at each age: Counter({2: 1364, 3: 435, 4: 4})
+No. of races with k-missing horse records: Counter({8: 2138, 9: 2097, 7: 2002, 10: 1984, 0: 1803, 6: 1752, 11: 1621, 5: 1393, 12: 1336, 13: 1025, 4: 939, 14: 650, 3: 596, 15: 454, 1: 383, 2: 381, 16: 262, 17: 230, 18: 112, 19: 108, 21: 51, 20: 50, 22: 31, 24: 28, 23: 23, 25: 13, 26: 12, 27: 9, 29: 8, 28: 4, 30: 2, 32: 2, 33: 2, 39: 1})
+No. of horse records with comptime missing: 21
+No. of race records with comptime missing: 21
+No. of race records with Irish race class 3549
+No. of handicap races: 14920

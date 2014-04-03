@@ -172,32 +172,6 @@ def goings_vs_speed(horses_train):
         for r in h.races:
             goings_and_speeds[r.going].append(r.horse_speed)
 
-def correlations(horses_train):
-    features = []
-    weights = []
-    speeds = []
-    ages = []
-    claims = []
-    stalls = []
-    ratings = []
-    distances = []
-    classes = []
-    odds = []
-    runners = []
-
-    for h in horses:
-        for r in h.races:
-            weights.append(r.weight_carried)
-            speeds.append(r.horse_speed)
-            ages.append(r.horse_age)
-            ratings.append(r.horse_raring)
-            claims.append(r.jockeys_claim)
-            distances.append(r.distance)
-            classes.append(r.race_class)
-            odds.append(r.horse_odds)
-            runners.append(r.no_of_runners)
-            stalls.append(r.stalls)
-
 
 def rating_vs_odds(horses_train):
     print 'Rating and Odds'
@@ -210,6 +184,23 @@ def rating_vs_odds(horses_train):
 
     print np.corrcoef(odds,ratings)
     print ''
+
+def jockeys_claim_test(horses):
+    c_set = set()
+    claims = []
+    weights = []
+
+    for h in horses:
+        for r in h.races:
+            c_set.add(r.jockeys_claim)
+            claims.append(r.jockeys_claim)
+            weights.append(r.weight_carried)
+
+    print 'Claims and Weight'
+    print np.corrcoef(claims, weights)
+    print ''
+
+    print c_set
     
 
 def main():

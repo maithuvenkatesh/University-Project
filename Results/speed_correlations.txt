@@ -1,0 +1,101 @@
+HorsesBorn98 Training Set:
+No. of horses: 929
+Rating and Speed
+CC: [[ 1.         -0.05606068]
+ [-0.05606068  1.        ]]
+
+Prize Money and Speed
+CC: [[ 1.          0.05062148]
+ [ 0.05062148  1.        ]]
+
+Odds and Speed
+CC: [[ 1.         -0.04952423]
+ [-0.04952423  1.        ]]
+
+Age and Speed
+CC: [[ 1.         -0.24462398]
+ [-0.24462398  1.        ]]
+
+No. of runners and Speed
+CC: [[ 1.          0.13711563]
+ [ 0.13711563  1.        ]]
+
+Race Class and Speed
+CC: [[ 1.          0.05948123]
+ [ 0.05948123  1.        ]]
+
+Weight and Speed
+CC: [[ 1.         -0.56191408]
+ [-0.56191408  1.        ]]
+
+Jockey's Claim and Speed
+CC: [[ 1.         -0.06187138]
+ [-0.06187138  1.        ]]
+
+Place and Speed
+CC: [[ 1.          0.04929836]
+ [ 0.04929836  1.        ]]
+
+Distance and Speed
+CC: [[ 1.         -0.78770207]
+ [-0.78770207  1.        ]]
+
+Comptime and Speed
+CC: [[ 1.        -0.8341416]
+ [-0.8341416  1.       ]]
+
+Stall No. and Speed
+CC: [[ 1.          0.36413689]
+ [ 0.36413689  1.        ]]
+
+
+HorsesBorn05 Training Set:
+No. of horses: 1113
+Rating and Speed
+CC: [[ 1.         -0.04805748]
+ [-0.04805748  1.        ]]
+
+Prize Money and Speed
+CC: [[ 1.          0.07575543]
+ [ 0.07575543  1.        ]]
+
+Odds and Speed
+CC: [[ 1.         -0.08691052]
+ [-0.08691052  1.        ]]
+
+Age and Speed
+CC: [[ 1.        -0.1919224]
+ [-0.1919224  1.       ]]
+
+No. of runners and Speed
+CC: [[ 1.          0.09894912]
+ [ 0.09894912  1.        ]]
+
+Race Class and Speed
+CC: [[ 1.          0.00681822]
+ [ 0.00681822  1.        ]]
+
+Weight and Speed
+CC: [[ 1.         -0.58427477]
+ [-0.58427477  1.        ]]
+
+Jockey's Claim and Speed
+CC: [[ 1.         -0.11461619]
+ [-0.11461619  1.        ]]
+
+Place and Speed
+CC: [[ 1.          0.01731727]
+ [ 0.01731727  1.        ]]
+
+Distance and Speed
+CC: [[ 1.         -0.80692111]
+ [-0.80692111  1.        ]]
+
+Comptime and Speed
+CC: [[ 1.         -0.85021124]
+ [-0.85021124  1.        ]]
+
+Stall No. and Speed
+CC: [[ 1.          0.35773205]
+ [ 0.35773205  1.        ]]
+

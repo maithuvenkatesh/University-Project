@@ -1,0 +1,56 @@
+ HorsesBorn98 Dataset 
+No. of instances in training set:
+773
+773
+
+No. of instances in testing set:
+768
+768
+
+Coefficients:
+[  5.50160301e-01  -6.32505836e-03   1.00467727e-05  -9.27555433e-04
+   1.39165736e-02]
+
+Intercept: 
+6.5564539037
+
+Mean squared error:
+0.770046697707
+
+Mean absolute error:
+0.663236180799
+
+R2 Score:
+0.440964789465
+
+1-R1 Score:
+0.724344405755
+
+ HorsesBorn05 Dataset 
+No. of instances in training set:
+745
+745
+
+No. of instances in testing set:
+732
+732
+
+Coefficients:
+[  6.83678570e-01  -4.70210196e-03   4.49082006e-06  -7.81332739e-04
+  -1.27279581e-02]
+
+Intercept: 
+7.54081908712
+
+Mean squared error:
+0.752945747684
+
+Mean absolute error:
+0.649132484901
+
+R2 Score:
+0.459339968826
+
+1-R1 Score:
+0.67717295546
+

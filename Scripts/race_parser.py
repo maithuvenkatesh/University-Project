@@ -46,8 +46,6 @@ class RaceParser:
     def __init__(self, filepath):
         self.races = {}
         self.comptime_missing = 0
-        self.irish_races = 0
-        self.handicap_races = 0
 
         with open(filepath) as f:
             attributes = f.readline().strip().split()
@@ -86,9 +84,6 @@ class RaceParser:
                 race_time = data[race_time_idx][1:-1].strip()
                 race_track = data[race_track_idx][1:-1].strip()
                 race_name = data[race_name_idx][1:-1].strip()
-
-                if re.search('handicap', race_name) or re.search('nursery', race_name):
-                    self.handicap_race += 1
 
                 race_key = race_name + race_date + race_time + race_track
 
@@ -149,7 +144,6 @@ class RaceParser:
                 race_grade = 0
                 
                 if race_class == 'Irish':
-                    self.irish_races += 1
                     race_class = 8
                 elif race_class == 1:
                     race_grade = int(data[major_idx][1:-1].strip().split()[-1])
@@ -191,14 +185,16 @@ class RaceParser:
 
                 if comptime == 0.0:
                     self.comptime_missing += 1
-                    continue
 				
                 trainer = data[trainer_idx][1:-1].strip()
                 jockey_name = data[jockey_name_idx][1:-1].strip()
                 jockeys_claim = float(data[jockeys_claim_idx][1:-1].strip())
                 rating = float(data[rating_idx][1:-1].strip())
 
-                horse_speed = float(race_distance)/float(comptime)
+                if comptime > 0.0:
+                    horse_speed = float(race_distance)/float(comptime)
+                else:
+                    horse_speed = None
 
                 stall_no = int(data[stall_idx][1:-1].strip())
 

@@ -3,11 +3,11 @@ import pylab as pl
 import random
 import matplotlib.pyplot as plt
 from horse_parser_no_handicaps import HorseParserNoHandicaps
-from utilities import split_dataset, ell1, ell2
+from utilities import split_dataset, r1
 from sklearn import linear_model, cross_validation
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-''' Regression Model One: With Past Performances Averaged '''
+''' Regression Model: Using Average of Past Performance '''
 
 def compute_vector(horse):
     vector = []
@@ -16,7 +16,7 @@ def compute_vector(horse):
     sorted_races = sorted(horse.races, key=lambda x:x.date, reverse=False)
 
     # Determine the next race of the horse between 4 and the second last race
-    next_race_number = random.randint(3, len(sorted_races)-2)
+    next_race_number = random.randint(max(4,len(horse.races)/2), len(horse.races)-2)
     speed_in_next_race = sorted_races[next_race_number].horse_speed
 
     # Compute and append lifetime features
@@ -24,23 +24,26 @@ def compute_vector(horse):
     average_odds = 0.0
     average_prize_money = 0.0
     average_distance = 0.0
+    average_weight_carried = 0.0
 
     for r in sorted_races[:next_race_number]:
         average_speed += r.horse_speed
-        average_rating += r.horse_rating
         average_odds += r.horse_odds
         average_distance += r.distance
         average_prize_money += r.prize
+        average_weight_carried += r.weight_carried
 
     vector.append(average_speed)
     vector.append(average_odds)
     vector.append(average_prize_money)
     vector.append(average_distance)
+    vector.append(average_weight_carried)
     
     no_of_races = len(sorted_races[:next_race_number])
     vector = [a/no_of_races for a in vector]
 
     return vector, speed_in_next_race
+    
 
 def main():
     horses98 = HorseParserNoHandicaps('./../Data/born98.csv').horses
@@ -76,21 +79,6 @@ def main():
     # Create linear regression object
     regr98 = linear_model.LinearRegression(fit_intercept=True)
 
-    # Cross-validation
-    cv_scores_98 = cross_validation.cross_val_score(regr98, np.array(horses_98_X_train), np.array(horses_98_y_train), scoring='mean_squared_error', cv=5)
-
-    #print regr98.coeff_
-
-    # Print CV scores
-    print '5-fold CV scores using MSE:'
-    print cv_scores_98
-    print ''
-
-    # Mean and SD of estimate score
-    print 'Mean of scores: ' + str(cv_scores_98.mean())
-    print 'SD of scores: ' + str(cv_scores_98.std() * 2)
-    print ''
-
     # Train the model using the training sets
     regr98.fit(np.array(horses_98_X_train), np.array(horses_98_y_train))
 
@@ -118,16 +106,9 @@ def main():
     print r2_score(horses_98_y_test, horses_98_y_pred)
     print ''
 
-    ''' ell1 and ell2 metrics computed using actual speeds and those predicted using the training set '''
-
-    print 'ell1:'
-    print ell1(horses_98_y_train, regr98.predict(horses_98_X_train))
+    print '1-R1 Score:'
+    print r1(horses_98_y_test, horses_98_y_pred)
     print ''
-
-    print 'ell2:'
-    print ell2(horses_98_y_train, regr98.predict(horses_98_X_train))
-    print ''
-
 
     print ''' HorsesBorn05 Dataset '''
     horses_train_05, horses_test_05 = split_dataset(horses05)
@@ -159,19 +140,6 @@ def main():
     # Create linear regression object
     regr05 = linear_model.LinearRegression(fit_intercept=True)
 
-    # Cross-validation
-    cv_scores_05 = cross_validation.cross_val_score(regr05, np.array(horses_05_X_train), np.array(horses_05_y_train), scoring='mean_squared_error', cv=5)
-
-    # Print CV scores
-    print '5-fold CV scores using MSE:'
-    print cv_scores_05
-    print ''
-
-    # Mean and SD of estimate score
-    print 'Mean of scores: ' + str(cv_scores_05.mean())
-    print 'SD of scores: ' + str(cv_scores_05.std() * 2)
-    print ''
-
     # Train the model using the training sets
     regr05.fit(np.array(horses_05_X_train), np.array(horses_05_y_train))
 
@@ -199,16 +167,9 @@ def main():
     print r2_score(horses_05_y_test, horses_05_y_pred)
     print ''
 
-    ''' ell1 and ell2 metrics computed using actual speeds and those predicted using the training set '''
-
-    print 'ell1:'
-    print ell1(horses_05_y_train, regr05.predict(horses_05_X_train))
+    print '1-R1 Score:'
+    print r1(horses_05_y_test, horses_05_y_pred)
     print ''
-
-    print 'ell2:'
-    print ell2(horses_05_y_train, regr98.predict(horses_05_X_train))
-    print ''
-
 
 
 if __name__ == "__main__":

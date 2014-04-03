@@ -1,0 +1,66 @@
+ HorsesBorn98 Dataset 
+No. of instances in training set:
+929
+929
+
+No. of instances in testing set:
+902
+902
+
+5-fold CV scores using MSE:
+[ 0.49381207  0.37574356  0.50701796  0.50906023  0.42948594]
+
+Mean of scores: 0.463023952613
+SD of scores: 0.10486327977
+
+Coefficients:
+[ 0.69483933]
+
+Intercept: 
+4.74459960467
+
+Mean squared error:
+0.646350952355
+
+Mean absolute error:
+0.603461405177
+
+R2 Score:
+0.471644371523
+
+1-R1 Score:
+0.296954236352
+
+ HorsesBorn05 Dataset 
+No. of instances in training set:
+1113
+1113
+
+No. of instances in testing set:
+1097
+1097
+
+5-fold CV scores using MSE:
+[ 0.54264221  0.40788852  0.40194799  0.5174894   0.46176312]
+
+Mean of scores: 0.466346245526
+SD of scores: 0.113215344655
+
+Coefficients:
+[ 0.71191433]
+
+Intercept: 
+4.46598415569
+
+Mean squared error:
+0.538081706526
+
+Mean absolute error:
+0.552794222406
+
+R2 Score:
+0.477066915159
+
+1-R1 Score:
+-0.0415965275296
+

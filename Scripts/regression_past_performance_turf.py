@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 from race_parser_no_handicaps import RaceParserNoHandicaps
 from horse_parser_no_handicaps import HorseParserNoHandicaps
 from utilities import split_dataset, r1
-from sklearn import linear_model, cross_validation
+from sklearn import linear_model
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-''' Regression Experiment: Baseline experiment '''
+''' Regression Experiment: Incoporating the Turf Details'''
 
 def compute_vector(horse):
     vector = []
@@ -20,9 +20,34 @@ def compute_vector(horse):
     next_race_number = random.randint(max(4,len(horse.races)/2), len(horse.races)-2)
     speed_in_next_race = sorted_races[next_race_number].horse_speed
 
-    # Retrieve and append previous race information
-    previous_race = sorted_races[next_race_number - 1]
-    vector.append(previous_race.horse_speed)
+    turf_speed = defaultdict(list)
+    turf_odds = defaultdict(list)
+    turf_prize = defaultdict(list)
+    turf_weight = defaultdict(list)
+    turf_distance = defaultdict(list)
+
+    # Compute and append lifetime features
+    average_speed = 0.0
+    average_rating = 0.0
+    average_odds = 0.0
+    average_prize_money = 0.0
+    average_distance = 0.0
+
+    for r in sorted_races[:next_race_number]:
+        average_speed += r.horse_speed
+        average_rating += r.horse_rating
+        average_odds += r.horse_odds
+        average_distance += r.distance
+        average_prize_money += r.prize
+
+    vector.append(average_speed)
+    vector.append(average_rating)
+    vector.append(average_odds)
+    vector.append(average_prize_money)
+    vector.append(average_distance)
+    
+    no_of_races = len(sorted_races[:next_race_number])
+    vector = [a/no_of_races for a in vector]
 
     return vector, speed_in_next_race
 
@@ -63,7 +88,7 @@ def main():
     # Train the model using the training sets
     regr98.fit(np.array(horses_98_X_train), np.array(horses_98_y_train))
 
-    # Print Coefficients
+    # Coefficients
     print 'Coefficients:'
     print regr98.coef_
     print ''
@@ -149,7 +174,7 @@ def main():
     print ''
 
     print '1-R1 Score:'
-    print r1(horses_05_y_test, horses_05_y_pred)
+    print r1(horses_05_y_pred, horses_05_y_test)
     print ''
 
 if __name__ == "__main__":

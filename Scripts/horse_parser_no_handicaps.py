@@ -38,8 +38,6 @@ class HorseParserNoHandicaps:
     def __init__(self, filepath):
         self.horses = {}
         self.comptime_missing = 0
-        self.irish_races = 0
-        self.handicap_races = 0
 
         with open(filepath) as f:
             attributes = f.readline().strip().split()
@@ -79,8 +77,7 @@ class HorseParserNoHandicaps:
                 race_track = data[race_track_idx][1:-1].strip()
                 race_name = data[race_name_idx][1:-1].strip()
 
-                if re.search('handicap', race_name) or re.search('nursery', race_name):
-                    self.handicap_race += 1
+                if re.search('handicap', race_name.lower()) or re.search('nursery', race_name.lower()):
                     continue
 
                 race_key = race_name + race_date + race_time + race_track
@@ -141,9 +138,7 @@ class HorseParserNoHandicaps:
                 race_class = data[race_class_idx][1:-1].strip().split()[-1]
                 race_grade = 0
                 
-                if race_class == 'Irish':
-                    self.irish_races += 1
-                    race_class = 8
+                if race_class == 'Irish' or race_class == 'irish':
                     continue
                 elif race_class == 1:
                     race_grade = int(data[major_idx][1:-1].strip().split()[-1])

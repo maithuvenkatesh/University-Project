@@ -1,7 +1,7 @@
 import re
-from collections import Counter, defaultdict
-from horse_parser_no_handicaps import HorseParserNoHandicaps
-from race_parser_no_handicaps import RaceParserNoHandicaps
+from collections import Counter
+from horse_parser import HorseParser 
+from race_parser import RaceParser 
 
 ''' Computes the number of races in the dataset for which the dataset contains the records of all participating horses '''
 def no_of_races_with_all_horses(races):
@@ -88,7 +88,27 @@ def races_with_k_runners(races):
     
     return races_with_k_horses
 
-''' Computes the number of races which contain the information for the winning horse '''
+''' Computes the count of handicap races'''
+def handicap_races(races):
+    handicap_races = 0
+    for r in races:
+        rname = races[r].name.lower()
+        if re.search('handicap', rname) or re.search('nursery', rname):
+            handicap_races += 1
+
+    return handicap_races 
+
+''' Computes the count of irish races'''
+def irish_races(races):
+    irish_races = 0
+    for r in races:
+        if races[r].race_class == 8:
+            irish_races += 1
+
+    return irish_races 
+
+#''' Computes the number of races which contain the information for the winning horse '''
+'''
 def races_with_winning_horse(races):
     races_with_winner = 0
 
@@ -98,103 +118,14 @@ def races_with_winning_horse(races):
                 races_with_winner += 1
 
     return races_with_winner
-
-''' Computes the number of distinct trainers in the dataset '''
-def no_of_trainers(horses):
-    trainers = set()
-
-    for h in horses:
-        for r in horses[h].races:
-            trainers.add(r.horse_trainer)
-
-    return len(trainers)
-
-''' Computes the number of distinct jockeys in the dataset '''
-def no_of_jockeys(horses):
-    jockeys = set()
-
-    for h in horses:
-        for r in horses[h].races:
-            jockeys.add(r.horse_jockey)
-
-    return len(jockeys)
-
-''' Computes the average horse speed on each going type '''
-def going_average_speeds(races):
-    going = defaultdict(list)
-    averages = defaultdict()
-
-    for r in races:
-        for h in races[r].horses:
-            going[races[r].going].append(h.speed)
-
-    for g in going:
-        total_speed = sum([x for x in going[g]])
-        number = len(going[g])
-        averages[g] = float(total_speed)/number
-        total_speed = 0.0
-        number = 0
-
-    print averages
-
-''' Computes the average horse speed in each race class '''
-def class_average_speeds(races):
-    race_class = defaultdict(list)
-    averages = defaultdict()
-
-    for r in races:
-        for h in races[r].horses:
-            race_class[races[r].race_class].append(h.speed)
-
-    for rc in race_class:
-        total_speed = sum([x for x in race_class[rc]])
-        number = len(race_class[rc])
-        averages[rc] = float(total_speed)/number
-        total_speed = 0.0
-        number = 0
-
-    print averages
-
-''' Computes the average race distance in each race class '''
-def class_average_distances(races):
-    race_class = defaultdict(list)
-    averages = defaultdict()
-
-    for r in races:
-        race_class[races[r].race_class].append(races[r].distance)
-
-    for rc in race_class:
-        total_distance = sum([x for x in race_class[rc]])
-        number = len(race_class[rc])
-        averages[rc] = float(total_distance)/number
-        total_distance = 0.0
-        number = 0
-
-    print averages
-
-''' Computes the average prize money in each race class '''
-def class_average_prizes(races):
-    race_class = defaultdict(list)
-    averages = defaultdict()
-
-    for r in races:
-        race_class[races[r].race_class].append(races[r].prize)
-
-    for rc in race_class:
-        total_prize = sum([x for x in race_class[rc]])
-        number = len(race_class[rc])
-        averages[rc] = float(total_prize)/number
-        total_prize = 0.0
-        number = 0
-
-    print averages
+'''
 
 def main():
-    horse_parser_98 = HorseParserNoHandicaps('./../Data/born98.csv')
-    horse_parser_05 = HorseParserNoHandicaps('./../Data/born05.csv')
+    horse_parser_98 = HorseParser('./../Data/born98.csv')
+    horse_parser_05 = HorseParser('./../Data/born05.csv')
 
-    race_parser_98 = RaceParserNoHandicaps('./../Data/born98.csv')
-    race_parser_05 = RaceParserNoHandicaps('./../Data/born05.csv')
+    race_parser_98 = RaceParser('./../Data/born98.csv')
+    race_parser_05 = RaceParser('./../Data/born05.csv')
 
     horses98 = horse_parser_98.horses
     horses05 = horse_parser_05.horses
@@ -206,10 +137,10 @@ def main():
     full_races_05 = get_full_races(races05)
 
     total_races_with_all_horses_98 = no_of_races_with_all_horses(races98)
-    total_races_with_winners_98 = races_with_winning_horse(races98)
+    total_races_with_winners_98 = no_of_races_with_winner(races98, horses98)
 
     total_races_with_all_horses_05 = no_of_races_with_all_horses(races05)
-    total_races_with_winners_05 = races_with_winning_horse(races05)
+    total_races_with_winners_05 = no_of_races_with_winner(races05, horses05)
 
     average_races_per_horse_98 = average_no_of_races_per_horse(horses98)
     average_races_per_horse_05 = average_no_of_races_per_horse(horses05)
@@ -223,7 +154,7 @@ def main():
     races_with_k_missing_horses_98 = races_with_k_missing_runners(races98)
     races_with_k_missing_horses_05 = races_with_k_missing_runners(races05)
 
-    print 'born98.csv file statistics - without handicap races:'
+    print 'born98.csv file statistics:'
     print 'No. of horses: ' + str(len(horses98))
     print 'No. of races: ' + str(len(races98))
     print 'No. of races for which we have all the horses: ' + str(total_races_with_all_horses_98)
@@ -233,21 +164,14 @@ def main():
     print 'Average no. of races per horse: ' + str(average_races_per_horse_98)
     print 'No. of races for horses at each age: ' + str(no_of_races_per_age_98)
     print 'No. of races with k-missing horse records: ' + str(races_with_k_missing_horses_98)
-    print 'No. of different trainers: ' + str(no_of_trainers(horses98))
-    print 'No. of different jockeys: ' + str(no_of_jockeys(horses98))
-    print 'Going and Speed: '
-    going_average_speeds(races98)
-    print 'Race Class and Speed:'
-    class_average_speeds(races98)
-    print 'Race Class and Distance:'
-    class_average_distances(races98)
-    print 'Race Class and Prize:'
-    class_average_prizes(races98)
-
+    print 'No. of horse records with comptime missing: ' + str(horse_parser_98.comptime_missing)
+    print 'No. of race records with comptime missing: ' + str(race_parser_98.comptime_missing)
+    print 'No. of race records with Irish race class ' + str(irish_races(races98))
+    print 'No. of handicap races: ' + str(handicap_races(races98))
 
     print ''
 
-    print 'born05.csv file statistics - without handicap races:'
+    print 'born05.csv file statistics:'
     print 'No. of horses: ' + str(len(horses05))
     print 'No. of races: ' + str(len(races05))
     print 'No. of races for which we have all the horses: ' + str(total_races_with_all_horses_05)
@@ -257,17 +181,10 @@ def main():
     print 'Average no. of races per horse: ' + str(average_races_per_horse_05)
     print 'No. of races for horses at each age: ' + str(no_of_races_per_age_05)
     print 'No. of races with k-missing horse records: ' + str(races_with_k_missing_horses_05)
-    print 'No. of different trainers: ' + str(no_of_trainers(horses05))
-    print 'No. of different jockeys: ' + str(no_of_jockeys(horses05))
-    print 'Going and Speed: '
-    going_average_speeds(races05)
-    print 'Race Class and Speed:'
-    class_average_speeds(races05)
-    print 'Race Class and Distance:'
-    class_average_distances(races05)
-    print 'Race Class and Prize:'
-    class_average_prizes(races05)
-
+    print 'No. of horse records with comptime missing: ' + str(horse_parser_05.comptime_missing)
+    print 'No. of race records with comptime missing: ' + str(race_parser_05.comptime_missing)
+    print 'No. of race records with Irish race class ' + str(irish_races(races05))
+    print 'No. of handicap races: ' + str(handicap_races(races05))
 
 if __name__ == "__main__":
-    main()
+	main()
